@@ -18,7 +18,7 @@ export const Route = createFileRoute("/create/exhibition/signin")({
 function SignIn() {
   const navigate = useNavigate();
   return (
-    <FlowShell steps={exhibitionSteps} current={5}>
+    <FlowShell steps={exhibitionSteps} current={6}>
       <div className="mx-auto max-w-md py-6">
         <SignInPanel onDone={() => navigate({ to: "/create/exhibition/confirm" })} />
       </div>

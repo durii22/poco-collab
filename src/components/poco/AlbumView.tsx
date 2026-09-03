@@ -56,6 +56,19 @@ export function AlbumView({
 
       <section className="mx-auto mt-6 max-w-3xl px-4 sm:px-6">
         <PlayerBar player={player} subtitle={`${album.title} · ${musician.name}`} />
+        <p className="mt-2 text-[11px] text-ink-muted">Press play to start — nothing plays automatically.</p>
+      </section>
+
+      {/* Visual artist credit */}
+      <section className="mx-auto mt-6 max-w-3xl px-4 sm:px-6">
+        <div className="panel flex items-center gap-4 p-4">
+          <img src={visualArtist.avatar} alt={visualArtist.name} loading="lazy" width={200} height={200} className="h-12 w-12 rounded-full object-cover" />
+          <div className="min-w-0 flex-1">
+            <p className="eyebrow">Visual artwork</p>
+            <p className="text-sm font-bold">{lang === "ko" ? visualArtist.nameKo : visualArtist.name}</p>
+            <p className="text-[11px] text-ink-muted">Cover and track visuals · © {visualArtist.name}</p>
+          </div>
+        </div>
       </section>
 
       {/* Track list with stories and artworks between tracks */}

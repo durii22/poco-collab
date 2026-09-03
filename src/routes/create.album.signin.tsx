@@ -18,7 +18,7 @@ export const Route = createFileRoute("/create/album/signin")({
 function SignIn() {
   const navigate = useNavigate();
   return (
-    <FlowShell steps={albumSteps} current={6}>
+    <FlowShell steps={albumSteps} current={7}>
       <div className="mx-auto max-w-md py-6">
         <SignInPanel onDone={() => navigate({ to: "/create/album/confirm" })} />
       </div>

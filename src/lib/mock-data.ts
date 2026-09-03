@@ -218,3 +218,104 @@ export function fmt(sec: number) {
   const s = Math.floor(sec % 60);
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
+
+/* ---------- Collaboration directory (mock) ---------- */
+
+export type DirectoryArtist = {
+  id: string;
+  type: "visual" | "musician";
+  name: string;
+  nameKo: string;
+  role: string;
+  region: string;
+  tag: string; // genre or medium
+  availability: "Open to collaborate" | "Selectively open" | "Booked until Q4";
+  avatar: string;
+  bio: string;
+};
+
+export const directory: DirectoryArtist[] = [
+  {
+    id: "va-1",
+    type: "visual",
+    name: "Seoyeon Han",
+    nameKo: "한서연",
+    role: "Photographer · Installation",
+    region: "Seoul, KR",
+    tag: "Analogue photography",
+    availability: "Open to collaborate",
+    avatar: artistVisual,
+    bio: "Works with the light that survives at the end of a day.",
+  },
+  {
+    id: "va-2",
+    type: "visual",
+    name: "Mira Oyelaran",
+    nameKo: "미라 오옐라란",
+    role: "Painter",
+    region: "Berlin, DE",
+    tag: "Oil on canvas",
+    availability: "Selectively open",
+    avatar: art2,
+    bio: "Large blue fields painted over several winters.",
+  },
+  {
+    id: "va-3",
+    type: "visual",
+    name: "Junho Baek",
+    nameKo: "백준호",
+    role: "Illustrator · Type",
+    region: "Busan, KR",
+    tag: "Digital illustration",
+    availability: "Booked until Q4",
+    avatar: art4,
+    bio: "Folded paper, folded light, one drawing a day.",
+  },
+  {
+    id: "mu-1",
+    type: "musician",
+    name: "Doyun Park",
+    nameKo: "박도윤",
+    role: "Cellist · Composer",
+    region: "Seoul, KR",
+    tag: "Modern classical",
+    availability: "Open to collaborate",
+    avatar: artistMusician,
+    bio: "Short pieces for cello and room tone.",
+  },
+  {
+    id: "mu-2",
+    type: "musician",
+    name: "Nari Cho",
+    nameKo: "조나리",
+    role: "Producer · Ambient",
+    region: "Seoul, KR",
+    tag: "Ambient / electronic",
+    availability: "Selectively open",
+    avatar: art3,
+    bio: "Field recordings folded into slow synth beds.",
+  },
+  {
+    id: "mu-3",
+    type: "musician",
+    name: "Théo Marchand",
+    nameKo: "테오 마르샹",
+    role: "Vocalist · Guitar",
+    region: "Lyon, FR",
+    tag: "Folk",
+    availability: "Open to collaborate",
+    avatar: art1,
+    bio: "Two microphones, one room, no overdubs.",
+  },
+];
+
+export const visualArtists = directory.filter((a) => a.type === "visual");
+export const musicians = directory.filter((a) => a.type === "musician");
+
+export type PilotStatus = "draft" | "review" | "changes" | "approved";
+
+export const samplePilots = [
+  { id: "p-1", title: "Quiet Hours × Room Tone", state: "published", pair: "Seoyeon Han × Doyun Park", note: "Published 12 Mar 2026" },
+  { id: "p-2", title: "Salt Field × Low Tide", state: "waiting", pair: "Mira Oyelaran × Nari Cho", note: "Waiting for musician approval" },
+  { id: "p-3", title: "Paper Weather (untitled)", state: "draft", pair: "Junho Baek × Théo Marchand", note: "Draft — works not selected" },
+] as const;

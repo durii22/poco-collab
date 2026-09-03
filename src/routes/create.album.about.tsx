@@ -34,7 +34,7 @@ function About() {
         <Field label={t("fBio")} value={a.bio} onChange={upd("bio")} textarea placeholder="I write short pieces for cello and room tone…" />
         <Field label={t("fLinks")} value={a.link} onChange={upd("link")} placeholder="youtube.com/@doyunpark" />
       </div>
-      <StepFooter nextLabel={t("next")} onNext={() => navigate({ to: "/create/album/info" })} />
+      <StepFooter nextLabel={t("next")} onNext={() => navigate({ to: "/create/album/collaborate" })} />
     </FlowShell>
   );
 }

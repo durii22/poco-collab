@@ -34,7 +34,7 @@ function Confirm() {
   ];
 
   return (
-    <FlowShell steps={albumSteps} current={6}>
+    <FlowShell steps={albumSteps} current={7}>
       <SectionTitle eyebrow="Last step" title={t("cfT")} />
       <div className="panel mt-6 divide-y divide-border p-0">
         {rows.map(([k, v]) => (

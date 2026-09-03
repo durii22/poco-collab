@@ -20,7 +20,7 @@ function Curating() {
     <div className="min-h-screen">
       <Header />
       <div className="mx-auto max-w-3xl px-4 pt-5 sm:px-6">
-        <ProgressBar steps={exhibitionSteps} current={2} />
+        <ProgressBar steps={exhibitionSteps} current={3} />
       </div>
       <CuratingScreen nextTo="/create/exhibition/refine" />
     </div>

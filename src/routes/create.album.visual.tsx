@@ -34,7 +34,7 @@ function Visual() {
   ];
 
   return (
-    <FlowShell steps={albumSteps} current={3}>
+    <FlowShell steps={albumSteps} current={4}>
       <SectionTitle eyebrow="Step 04" title={t("vcT")} />
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {options.map((o) => (
