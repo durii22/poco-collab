@@ -25,7 +25,7 @@ function Preview() {
   const r = state.refinements;
 
   return (
-    <FlowShell steps={albumSteps} current={5} wide>
+    <FlowShell steps={albumSteps} current={6} wide>
       <SectionTitle eyebrow="Step 06" title={t("prevT")} sub={t("prevB")} />
       <div className="mt-6 overflow-hidden rounded-2xl border border-stroke-panel">
         <div className="max-h-[70vh] overflow-y-auto">

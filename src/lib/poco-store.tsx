@@ -5,6 +5,45 @@ export type ProjectType = "exhibition" | "album" | null;
 
 export type Comment = { id: string; name: string; text: string; when: string };
 
+export type CollabMode = "alone" | "collab" | "later" | null;
+export type CollabStatus = "draft" | "invited" | "accepted";
+export type PilotApproval = "none" | "review" | "changes" | "approved";
+
+export type ManualArtist = { id: string; type: "visual" | "musician"; name: string; role: string; region: string; tag: string };
+
+export type CollabState = {
+  mode: CollabMode;
+  partnerId: string | null;
+  workId: string | null; // track id (visual artist flow) or artwork id (musician flow)
+  status: CollabStatus;
+  pocoArranged: boolean;
+};
+
+export type PilotState = {
+  visualId: string | null;
+  musicianId: string | null;
+  coverArtworkId: string | null;
+  exhibitionArtworkIds: string[];
+  trackIds: string[];
+  featuredTrackId: string | null;
+  performanceVideo: boolean;
+  manualArtists: ManualArtist[];
+  config: {
+    collabTitle: string;
+    story: string;
+    exhibitionTitle: string;
+    albumTitle: string;
+    artistCredits: string;
+    artworkCredits: string;
+    musicCredits: string;
+    inquiryLink: string;
+    order: string;
+  };
+  approvals: { visual: PilotApproval; musician: PilotApproval };
+  sent: { visual: boolean; musician: boolean };
+  published: boolean;
+};
+
 export type PocoState = {
   projectType: ProjectType;
   artist: { name: string; role: string; base: string; bio: string; link: string };
@@ -19,6 +58,41 @@ export type PocoState = {
   engagement: Record<string, { likes: number; cheers: number; liked: boolean; cheered: boolean; comments: Comment[] }>;
   following: Record<string, boolean>;
   draftSavedAt: string | null;
+  collab: CollabState;
+  pilot: PilotState;
+};
+
+export const defaultCollab: CollabState = {
+  mode: null,
+  partnerId: null,
+  workId: null,
+  status: "draft",
+  pocoArranged: false,
+};
+
+export const defaultPilot: PilotState = {
+  visualId: null,
+  musicianId: null,
+  coverArtworkId: null,
+  exhibitionArtworkIds: [],
+  trackIds: [],
+  featuredTrackId: null,
+  performanceVideo: false,
+  manualArtists: [],
+  config: {
+    collabTitle: "",
+    story: "",
+    exhibitionTitle: "",
+    albumTitle: "",
+    artistCredits: "",
+    artworkCredits: "",
+    musicCredits: "",
+    inquiryLink: "",
+    order: "Exhibition first",
+  },
+  approvals: { visual: "none", musician: "none" },
+  sent: { visual: false, musician: false },
+  published: false,
 };
 
 const defaultState: PocoState = {
@@ -39,6 +113,8 @@ const defaultState: PocoState = {
   },
   following: {},
   draftSavedAt: null,
+  collab: defaultCollab,
+  pilot: defaultPilot,
 };
 
 type Ctx = {
@@ -48,6 +124,9 @@ type Ctx = {
   addCheer: (key: string) => void;
   addComment: (key: string, name: string, text: string) => void;
   toggleFollow: (who: string) => void;
+  setCollab: (patch: Partial<CollabState>) => void;
+  setPilot: (patch: Partial<PilotState>) => void;
+  setPilotConfig: (patch: Partial<PilotState["config"]>) => void;
   reset: () => void;
 };
 
@@ -58,6 +137,9 @@ const StoreContext = createContext<Ctx>({
   addCheer: () => {},
   addComment: () => {},
   toggleFollow: () => {},
+  setCollab: () => {},
+  setPilot: () => {},
+  setPilotConfig: () => {},
   reset: () => {},
 });
 
@@ -69,7 +151,21 @@ export function PocoProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) setState({ ...defaultState, ...JSON.parse(raw) });
+      if (raw) {
+        const saved = JSON.parse(raw) as Partial<PocoState>;
+        setState({
+          ...defaultState,
+          ...saved,
+          collab: { ...defaultCollab, ...(saved.collab ?? {}) },
+          pilot: {
+            ...defaultPilot,
+            ...(saved.pilot ?? {}),
+            config: { ...defaultPilot.config, ...(saved.pilot?.config ?? {}) },
+            approvals: { ...defaultPilot.approvals, ...(saved.pilot?.approvals ?? {}) },
+            sent: { ...defaultPilot.sent, ...(saved.pilot?.sent ?? {}) },
+          },
+        });
+      }
     } catch {
       /* prototype only */
     }
@@ -110,6 +206,9 @@ export function PocoProvider({ children }: { children: ReactNode }) {
         const c: Comment = { id: `${Date.now()}`, name: name || "Guest", text, when: "just now" };
         set({ engagement: { ...state.engagement, [key]: { ...e, comments: [c, ...e.comments] } } });
       },
+      setCollab: (patch) => set({ collab: { ...state.collab, ...patch } }),
+      setPilot: (patch) => set({ pilot: { ...state.pilot, ...patch } }),
+      setPilotConfig: (patch) => set({ pilot: { ...state.pilot, config: { ...state.pilot.config, ...patch } } }),
       toggleFollow: (who) => set({ following: { ...state.following, [who]: !state.following[who] } }),
       reset: () => persist(defaultState),
     };

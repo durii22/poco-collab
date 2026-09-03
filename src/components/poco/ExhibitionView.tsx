@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Disc3, ArrowRight } from "lucide-react";
-import { artworks, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { artworks, directory, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { usePoco } from "@/lib/poco-store";
 import { useLang, useT } from "@/lib/i18n";
 import { useMockPlayer, PlayerBar } from "./AudioPlayer";
 import { Comments, EngagementBar, FollowButton, InquiryModal } from "./Engagement";
@@ -23,9 +24,23 @@ export function ExhibitionView({
 }) {
   const t = useT();
   const { lang } = useLang();
+  const { state } = usePoco();
+  const c = state.collab;
   const player = useMockPlayer(tracks);
   const [inquiry, setInquiry] = useState(false);
   const works = reordered ? [...artworks].reverse() : artworks;
+
+  // The music player only appears once a musician AND a track are attached.
+  const partner = directory.find((a) => a.id === c.partnerId && a.type === "musician") ?? null;
+  const chosenTrack = tracks.find((tr) => tr.id === c.workId) ?? null;
+  const soundtrack =
+    c.mode === "collab"
+      ? partner && chosenTrack
+        ? { name: partner.name, track: chosenTrack }
+        : null
+      : c.mode === null
+        ? { name: musician.name, track: tracks[0]! }
+        : null;
 
   return (
     <div className={cn(warm && "[--primary:#ff9d5c]")}>
@@ -58,18 +73,23 @@ export function ExhibitionView({
         </div>
       </section>
 
-      {/* Music player added to the exhibition */}
-      <section className={cn("mx-auto mt-6 max-w-3xl px-4 sm:px-6", emphasizeMusic && "order-first")}>
-        <p className="eyebrow mb-2">{t("nowPlaying")} · Sound for this exhibition</p>
-        <PlayerBar player={player} subtitle={`${musician.name} — ${player.track?.performer}`} />
-        <Link
-          to="/album"
-          className="mt-2 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline"
-        >
-          <Disc3 className="h-4 w-4" />
-          {t("viewAlbum")}: Room Tone <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
-      </section>
+      {/* Compact music player — only once a musician and a track are selected. Never autoplays. */}
+      {soundtrack ? (
+        <section className={cn("mx-auto mt-6 max-w-3xl px-4 sm:px-6", emphasizeMusic && "order-first")}>
+          <p className="eyebrow mb-2">{t("nowPlaying")} · Sound for this exhibition</p>
+          <PlayerBar player={player} subtitle={`${soundtrack.track.title} — ${soundtrack.name}`} />
+          <p className="mt-2 text-[11px] text-ink-muted">
+            Music — {soundtrack.name} · “{soundtrack.track.title}” · {soundtrack.track.performer}
+          </p>
+          <Link
+            to="/album"
+            className="mt-2 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline"
+          >
+            <Disc3 className="h-4 w-4" />
+            {t("viewAlbum")}: Room Tone <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </section>
+      ) : null}
 
       {/* Archive */}
       <section className="mx-auto mt-14 max-w-3xl space-y-16 px-4 sm:px-6">
@@ -103,7 +123,7 @@ export function ExhibitionView({
         <div className="panel space-y-2 p-5 text-sm text-ink-muted">
           <p className="eyebrow mb-2">{t("credits")}</p>
           <p>Works and photography — {visualArtist.name}</p>
-          <p>Sound — {musician.name}, from the digital album “Room Tone”</p>
+          {soundtrack ? <p>Sound — {soundtrack.name}, “{soundtrack.track.title}”, from the digital album “Room Tone”</p> : null}
           <p>Curation, sequencing and lighting — POCO</p>
         </div>
       </section>

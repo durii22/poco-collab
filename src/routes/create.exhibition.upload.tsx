@@ -41,7 +41,7 @@ function UploadPage() {
   const upd = (i: number, k: keyof Draft) => (v: string) => setDrafts((d) => ({ ...d, [i]: { ...get(i), [k]: v } }));
 
   return (
-    <FlowShell steps={exhibitionSteps} current={1}>
+    <FlowShell steps={exhibitionSteps} current={2}>
       <SectionTitle eyebrow="Step 02" title={t("upT")} sub={t("upB")} />
 
       <div className="mt-6">

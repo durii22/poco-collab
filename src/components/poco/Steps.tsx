@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 export const exhibitionSteps = [
   { label: { en: "About you", ko: "소개" }, to: "/create/exhibition/about" },
+  { label: { en: "Collaboration", ko: "협업" }, to: "/create/exhibition/collaborate" },
   { label: { en: "Artwork", ko: "작품" }, to: "/create/exhibition/upload" },
   { label: { en: "Curation", ko: "큐레이션" }, to: "/create/exhibition/curating" },
   { label: { en: "Refine", ko: "다듬기" }, to: "/create/exhibition/refine" },
@@ -16,6 +17,7 @@ export const exhibitionSteps = [
 
 export const albumSteps = [
   { label: { en: "About you", ko: "소개" }, to: "/create/album/about" },
+  { label: { en: "Collaboration", ko: "협업" }, to: "/create/album/collaborate" },
   { label: { en: "Album", ko: "앨범" }, to: "/create/album/info" },
   { label: { en: "Tracks", ko: "트랙" }, to: "/create/album/tracks" },
   { label: { en: "Visuals", ko: "비주얼" }, to: "/create/album/visual" },

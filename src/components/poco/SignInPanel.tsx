@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Chrome, Apple, Mail } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { usePoco } from "@/lib/poco-store";
@@ -35,6 +36,11 @@ export function SignInPanel({ onDone }: { onDone: () => void }) {
       <p className="text-center text-[11px] text-ink-muted">
         Prototype only — no real authentication happens here.
       </p>
+      <div className="border-t border-border pt-4 text-center">
+        <Link to="/admin" className="text-[11px] font-semibold text-ink-muted underline underline-offset-4 hover:text-primary">
+          {t("paEntry")}
+        </Link>
+      </div>
     </div>
   );
 }

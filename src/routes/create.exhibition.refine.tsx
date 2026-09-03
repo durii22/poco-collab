@@ -24,7 +24,7 @@ function Refine() {
   const navigate = useNavigate();
 
   return (
-    <FlowShell steps={exhibitionSteps} current={3}>
+    <FlowShell steps={exhibitionSteps} current={4}>
       <SectionTitle eyebrow="Step 04" title={t("refT")} sub={t("refB")} />
       <div className="mt-6">
         <RefineChat suggestions={["ref1", "ref2", "ref3", "ref4"]}>

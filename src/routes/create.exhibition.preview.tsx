@@ -25,7 +25,7 @@ function Preview() {
   const r = state.refinements;
 
   return (
-    <FlowShell steps={exhibitionSteps} current={4} wide>
+    <FlowShell steps={exhibitionSteps} current={5} wide>
       <SectionTitle eyebrow="Step 05" title={t("prevT")} sub={t("prevB")} />
       <div className="mt-6 overflow-hidden rounded-2xl border border-stroke-panel">
         <div className="max-h-[70vh] overflow-y-auto">

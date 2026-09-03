@@ -27,7 +27,7 @@ function Info() {
   const upd = (k: keyof typeof a) => (v: string) => set({ albumInfo: { ...a, [k]: v } });
 
   return (
-    <FlowShell steps={albumSteps} current={1}>
+    <FlowShell steps={albumSteps} current={2}>
       <SectionTitle eyebrow="Step 02" title={t("albT")} />
       <div className="mt-8 space-y-4">
         <Field label={t("fAlbTitle")} value={a.title} onChange={upd("title")} placeholder="Room Tone" />

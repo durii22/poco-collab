@@ -42,7 +42,7 @@ function TracksPage() {
   const upd = (i: number, k: keyof D) => (v: string) => setDrafts((d) => ({ ...d, [i]: { ...get(i), [k]: v } }));
 
   return (
-    <FlowShell steps={albumSteps} current={2}>
+    <FlowShell steps={albumSteps} current={3}>
       <SectionTitle eyebrow="Step 03" title={t("trT")} sub={t("upB")} />
 
       <div className="mt-6">

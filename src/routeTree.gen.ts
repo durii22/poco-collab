@@ -16,7 +16,15 @@ import { Route as ExhibitionRouteImport } from './routes/exhibition'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as VisitorRouteImport } from './routes/visitor'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminNewApprovalRouteImport } from './routes/admin.new.approval'
+import { Route as AdminNewArtistsRouteImport } from './routes/admin.new.artists'
+import { Route as AdminNewConfigureRouteImport } from './routes/admin.new.configure'
+import { Route as AdminNewPreviewsRouteImport } from './routes/admin.new.previews'
+import { Route as AdminNewPublishRouteImport } from './routes/admin.new.publish'
+import { Route as AdminNewWorksRouteImport } from './routes/admin.new.works'
 import { Route as CreateAlbumAboutRouteImport } from './routes/create.album.about'
+import { Route as CreateAlbumCollaborateRouteImport } from './routes/create.album.collaborate'
 import { Route as CreateAlbumConfirmRouteImport } from './routes/create.album.confirm'
 import { Route as CreateAlbumCuratingRouteImport } from './routes/create.album.curating'
 import { Route as CreateAlbumInfoRouteImport } from './routes/create.album.info'
@@ -26,6 +34,7 @@ import { Route as CreateAlbumSigninRouteImport } from './routes/create.album.sig
 import { Route as CreateAlbumTracksRouteImport } from './routes/create.album.tracks'
 import { Route as CreateAlbumVisualRouteImport } from './routes/create.album.visual'
 import { Route as CreateExhibitionAboutRouteImport } from './routes/create.exhibition.about'
+import { Route as CreateExhibitionCollaborateRouteImport } from './routes/create.exhibition.collaborate'
 import { Route as CreateExhibitionConfirmRouteImport } from './routes/create.exhibition.confirm'
 import { Route as CreateExhibitionCuratingRouteImport } from './routes/create.exhibition.curating'
 import { Route as CreateExhibitionPreviewRouteImport } from './routes/create.exhibition.preview'
@@ -68,9 +77,49 @@ const VisitorRoute = VisitorRouteImport.update({
   path: '/visitor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewApprovalRoute = AdminNewApprovalRouteImport.update({
+  id: '/admin/new/approval',
+  path: '/admin/new/approval',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewArtistsRoute = AdminNewArtistsRouteImport.update({
+  id: '/admin/new/artists',
+  path: '/admin/new/artists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewConfigureRoute = AdminNewConfigureRouteImport.update({
+  id: '/admin/new/configure',
+  path: '/admin/new/configure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewPreviewsRoute = AdminNewPreviewsRouteImport.update({
+  id: '/admin/new/previews',
+  path: '/admin/new/previews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewPublishRoute = AdminNewPublishRouteImport.update({
+  id: '/admin/new/publish',
+  path: '/admin/new/publish',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewWorksRoute = AdminNewWorksRouteImport.update({
+  id: '/admin/new/works',
+  path: '/admin/new/works',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateAlbumAboutRoute = CreateAlbumAboutRouteImport.update({
   id: '/create/album/about',
   path: '/create/album/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumCollaborateRoute = CreateAlbumCollaborateRouteImport.update({
+  id: '/create/album/collaborate',
+  path: '/create/album/collaborate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateAlbumConfirmRoute = CreateAlbumConfirmRouteImport.update({
@@ -118,6 +167,12 @@ const CreateExhibitionAboutRoute = CreateExhibitionAboutRouteImport.update({
   path: '/create/exhibition/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreateExhibitionCollaborateRoute =
+  CreateExhibitionCollaborateRouteImport.update({
+    id: '/create/exhibition/collaborate',
+    path: '/create/exhibition/collaborate',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CreateExhibitionConfirmRoute = CreateExhibitionConfirmRouteImport.update({
   id: '/create/exhibition/confirm',
   path: '/create/exhibition/confirm',
@@ -158,7 +213,15 @@ export interface FileRoutesByFullPath {
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/visitor': typeof VisitorRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/new/approval': typeof AdminNewApprovalRoute
+  '/admin/new/artists': typeof AdminNewArtistsRoute
+  '/admin/new/configure': typeof AdminNewConfigureRoute
+  '/admin/new/previews': typeof AdminNewPreviewsRoute
+  '/admin/new/publish': typeof AdminNewPublishRoute
+  '/admin/new/works': typeof AdminNewWorksRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/collaborate': typeof CreateAlbumCollaborateRoute
   '/create/album/confirm': typeof CreateAlbumConfirmRoute
   '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
@@ -168,6 +231,7 @@ export interface FileRoutesByFullPath {
   '/create/album/tracks': typeof CreateAlbumTracksRoute
   '/create/album/visual': typeof CreateAlbumVisualRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/collaborate': typeof CreateExhibitionCollaborateRoute
   '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
   '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
   '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
@@ -183,7 +247,15 @@ export interface FileRoutesByTo {
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/visitor': typeof VisitorRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/new/approval': typeof AdminNewApprovalRoute
+  '/admin/new/artists': typeof AdminNewArtistsRoute
+  '/admin/new/configure': typeof AdminNewConfigureRoute
+  '/admin/new/previews': typeof AdminNewPreviewsRoute
+  '/admin/new/publish': typeof AdminNewPublishRoute
+  '/admin/new/works': typeof AdminNewWorksRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/collaborate': typeof CreateAlbumCollaborateRoute
   '/create/album/confirm': typeof CreateAlbumConfirmRoute
   '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
@@ -193,6 +265,7 @@ export interface FileRoutesByTo {
   '/create/album/tracks': typeof CreateAlbumTracksRoute
   '/create/album/visual': typeof CreateAlbumVisualRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/collaborate': typeof CreateExhibitionCollaborateRoute
   '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
   '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
   '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
@@ -209,7 +282,15 @@ export interface FileRoutesById {
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/visitor': typeof VisitorRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/new/approval': typeof AdminNewApprovalRoute
+  '/admin/new/artists': typeof AdminNewArtistsRoute
+  '/admin/new/configure': typeof AdminNewConfigureRoute
+  '/admin/new/previews': typeof AdminNewPreviewsRoute
+  '/admin/new/publish': typeof AdminNewPublishRoute
+  '/admin/new/works': typeof AdminNewWorksRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/collaborate': typeof CreateAlbumCollaborateRoute
   '/create/album/confirm': typeof CreateAlbumConfirmRoute
   '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
@@ -219,6 +300,7 @@ export interface FileRoutesById {
   '/create/album/tracks': typeof CreateAlbumTracksRoute
   '/create/album/visual': typeof CreateAlbumVisualRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/collaborate': typeof CreateExhibitionCollaborateRoute
   '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
   '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
   '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
@@ -236,7 +318,15 @@ export interface FileRouteTypes {
     | '/signin'
     | '/start'
     | '/visitor'
+    | '/admin/'
+    | '/admin/new/approval'
+    | '/admin/new/artists'
+    | '/admin/new/configure'
+    | '/admin/new/previews'
+    | '/admin/new/publish'
+    | '/admin/new/works'
     | '/create/album/about'
+    | '/create/album/collaborate'
     | '/create/album/confirm'
     | '/create/album/curating'
     | '/create/album/info'
@@ -246,6 +336,7 @@ export interface FileRouteTypes {
     | '/create/album/tracks'
     | '/create/album/visual'
     | '/create/exhibition/about'
+    | '/create/exhibition/collaborate'
     | '/create/exhibition/confirm'
     | '/create/exhibition/curating'
     | '/create/exhibition/preview'
@@ -261,7 +352,15 @@ export interface FileRouteTypes {
     | '/signin'
     | '/start'
     | '/visitor'
+    | '/admin'
+    | '/admin/new/approval'
+    | '/admin/new/artists'
+    | '/admin/new/configure'
+    | '/admin/new/previews'
+    | '/admin/new/publish'
+    | '/admin/new/works'
     | '/create/album/about'
+    | '/create/album/collaborate'
     | '/create/album/confirm'
     | '/create/album/curating'
     | '/create/album/info'
@@ -271,6 +370,7 @@ export interface FileRouteTypes {
     | '/create/album/tracks'
     | '/create/album/visual'
     | '/create/exhibition/about'
+    | '/create/exhibition/collaborate'
     | '/create/exhibition/confirm'
     | '/create/exhibition/curating'
     | '/create/exhibition/preview'
@@ -286,7 +386,15 @@ export interface FileRouteTypes {
     | '/signin'
     | '/start'
     | '/visitor'
+    | '/admin/'
+    | '/admin/new/approval'
+    | '/admin/new/artists'
+    | '/admin/new/configure'
+    | '/admin/new/previews'
+    | '/admin/new/publish'
+    | '/admin/new/works'
     | '/create/album/about'
+    | '/create/album/collaborate'
     | '/create/album/confirm'
     | '/create/album/curating'
     | '/create/album/info'
@@ -296,6 +404,7 @@ export interface FileRouteTypes {
     | '/create/album/tracks'
     | '/create/album/visual'
     | '/create/exhibition/about'
+    | '/create/exhibition/collaborate'
     | '/create/exhibition/confirm'
     | '/create/exhibition/curating'
     | '/create/exhibition/preview'
@@ -312,7 +421,15 @@ export interface RootRouteChildren {
   SigninRoute: typeof SigninRoute
   StartRoute: typeof StartRoute
   VisitorRoute: typeof VisitorRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminNewApprovalRoute: typeof AdminNewApprovalRoute
+  AdminNewArtistsRoute: typeof AdminNewArtistsRoute
+  AdminNewConfigureRoute: typeof AdminNewConfigureRoute
+  AdminNewPreviewsRoute: typeof AdminNewPreviewsRoute
+  AdminNewPublishRoute: typeof AdminNewPublishRoute
+  AdminNewWorksRoute: typeof AdminNewWorksRoute
   CreateAlbumAboutRoute: typeof CreateAlbumAboutRoute
+  CreateAlbumCollaborateRoute: typeof CreateAlbumCollaborateRoute
   CreateAlbumConfirmRoute: typeof CreateAlbumConfirmRoute
   CreateAlbumCuratingRoute: typeof CreateAlbumCuratingRoute
   CreateAlbumInfoRoute: typeof CreateAlbumInfoRoute
@@ -322,6 +439,7 @@ export interface RootRouteChildren {
   CreateAlbumTracksRoute: typeof CreateAlbumTracksRoute
   CreateAlbumVisualRoute: typeof CreateAlbumVisualRoute
   CreateExhibitionAboutRoute: typeof CreateExhibitionAboutRoute
+  CreateExhibitionCollaborateRoute: typeof CreateExhibitionCollaborateRoute
   CreateExhibitionConfirmRoute: typeof CreateExhibitionConfirmRoute
   CreateExhibitionCuratingRoute: typeof CreateExhibitionCuratingRoute
   CreateExhibitionPreviewRoute: typeof CreateExhibitionPreviewRoute
@@ -381,11 +499,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/new/approval': {
+      id: '/admin/new/approval'
+      path: '/admin/new/approval'
+      fullPath: '/admin/new/approval'
+      preLoaderRoute: typeof AdminNewApprovalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/new/artists': {
+      id: '/admin/new/artists'
+      path: '/admin/new/artists'
+      fullPath: '/admin/new/artists'
+      preLoaderRoute: typeof AdminNewArtistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/new/configure': {
+      id: '/admin/new/configure'
+      path: '/admin/new/configure'
+      fullPath: '/admin/new/configure'
+      preLoaderRoute: typeof AdminNewConfigureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/new/previews': {
+      id: '/admin/new/previews'
+      path: '/admin/new/previews'
+      fullPath: '/admin/new/previews'
+      preLoaderRoute: typeof AdminNewPreviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/new/publish': {
+      id: '/admin/new/publish'
+      path: '/admin/new/publish'
+      fullPath: '/admin/new/publish'
+      preLoaderRoute: typeof AdminNewPublishRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/new/works': {
+      id: '/admin/new/works'
+      path: '/admin/new/works'
+      fullPath: '/admin/new/works'
+      preLoaderRoute: typeof AdminNewWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create/album/about': {
       id: '/create/album/about'
       path: '/create/album/about'
       fullPath: '/create/album/about'
       preLoaderRoute: typeof CreateAlbumAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/collaborate': {
+      id: '/create/album/collaborate'
+      path: '/create/album/collaborate'
+      fullPath: '/create/album/collaborate'
+      preLoaderRoute: typeof CreateAlbumCollaborateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create/album/confirm': {
@@ -451,6 +625,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateExhibitionAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create/exhibition/collaborate': {
+      id: '/create/exhibition/collaborate'
+      path: '/create/exhibition/collaborate'
+      fullPath: '/create/exhibition/collaborate'
+      preLoaderRoute: typeof CreateExhibitionCollaborateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create/exhibition/confirm': {
       id: '/create/exhibition/confirm'
       path: '/create/exhibition/confirm'
@@ -504,7 +685,15 @@ const rootRouteChildren: RootRouteChildren = {
   SigninRoute: SigninRoute,
   StartRoute: StartRoute,
   VisitorRoute: VisitorRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminNewApprovalRoute: AdminNewApprovalRoute,
+  AdminNewArtistsRoute: AdminNewArtistsRoute,
+  AdminNewConfigureRoute: AdminNewConfigureRoute,
+  AdminNewPreviewsRoute: AdminNewPreviewsRoute,
+  AdminNewPublishRoute: AdminNewPublishRoute,
+  AdminNewWorksRoute: AdminNewWorksRoute,
   CreateAlbumAboutRoute: CreateAlbumAboutRoute,
+  CreateAlbumCollaborateRoute: CreateAlbumCollaborateRoute,
   CreateAlbumConfirmRoute: CreateAlbumConfirmRoute,
   CreateAlbumCuratingRoute: CreateAlbumCuratingRoute,
   CreateAlbumInfoRoute: CreateAlbumInfoRoute,
@@ -514,6 +703,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreateAlbumTracksRoute: CreateAlbumTracksRoute,
   CreateAlbumVisualRoute: CreateAlbumVisualRoute,
   CreateExhibitionAboutRoute: CreateExhibitionAboutRoute,
+  CreateExhibitionCollaborateRoute: CreateExhibitionCollaborateRoute,
   CreateExhibitionConfirmRoute: CreateExhibitionConfirmRoute,
   CreateExhibitionCuratingRoute: CreateExhibitionCuratingRoute,
   CreateExhibitionPreviewRoute: CreateExhibitionPreviewRoute,
