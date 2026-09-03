@@ -77,11 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "POCO — exhibitions and digital albums for independent artists" },
+      {
+        name: "description",
+        content:
+          "POCO turns photos, artwork, music and creative projects into online exhibitions and digital albums, then opens them with one link.",
+      },
+      { name: "author", content: "Pocotalk Inc." },
+      { property: "og:title", content: "POCO — exhibitions and digital albums" },
+      {
+        property: "og:description",
+        content: "Create, exhibit, share, engage and collaborate — POCO curates your work as an online experience.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -90,6 +97,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "stylesheet",
+        href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
