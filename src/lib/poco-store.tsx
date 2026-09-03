@@ -33,9 +33,9 @@ const defaultState: PocoState = {
   signedIn: false,
   published: { exhibition: false, album: false },
   engagement: {
-    exhibition: { ...seedCounts.exhibition, liked: false, cheered: false, comments: seedComments.exhibition },
-    album: { ...seedCounts.album, liked: false, cheered: false, comments: seedComments.album },
-    collaboration: { ...seedCounts.collaboration, liked: false, cheered: false, comments: seedComments.collaboration },
+    exhibition: { ...seedCounts.exhibition, liked: false, cheered: false, comments: [...seedComments.exhibition] },
+    album: { ...seedCounts.album, liked: false, cheered: false, comments: [...seedComments.album] },
+    collaboration: { ...seedCounts.collaboration, liked: false, cheered: false, comments: [...seedComments.collaboration] },
   },
   following: {},
   draftSavedAt: null,

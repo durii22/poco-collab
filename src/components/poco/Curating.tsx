@@ -26,10 +26,9 @@ export function CuratingScreen({ nextTo }: { nextTo: string }) {
 
   useEffect(() => {
     setP(Math.min(phases.length - 1, Math.floor((pct / 100) * phases.length)));
-    if (pct >= 100) {
-      const to = setTimeout(() => navigate({ to: nextTo }), 900);
-      return () => clearTimeout(to);
-    }
+    if (pct < 100) return undefined;
+    const to = setTimeout(() => navigate({ to: nextTo }), 900);
+    return () => clearTimeout(to);
   }, [pct, navigate, nextTo]);
 
   return (

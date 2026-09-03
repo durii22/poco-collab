@@ -61,7 +61,7 @@ function UploadPage() {
             <div key={i} className="panel space-y-4 p-5">
               <div className="flex gap-4">
                 <img
-                  src={artworks[i % artworks.length].src}
+                  src={artworks[i % artworks.length]!.src}
                   alt=""
                   loading="lazy"
                   width={1024}

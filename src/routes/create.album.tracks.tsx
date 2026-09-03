@@ -66,7 +66,7 @@ function TracksPage() {
                 </span>
                 <div className="flex flex-1 items-center gap-2 rounded-full bg-surface-note px-3 py-2 text-[12px] text-ink-muted">
                   <Music2 className="h-3.5 w-3.5 text-primary" />
-                  track-{i + 1}.mp3 · {fmt(tracks[i % tracks.length].duration)} · mock file
+                  track-{i + 1}.mp3 · {fmt(tracks[i % tracks.length]!.duration)} · mock file
                 </div>
               </div>
               <Field label={t("fTrackTitle")} value={d.title} onChange={upd(i, "title")} />
