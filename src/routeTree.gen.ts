@@ -10,33 +10,324 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlbumRouteImport } from './routes/album'
+import { Route as CollaborationRouteImport } from './routes/collaboration'
+import { Route as ExhibitionRouteImport } from './routes/exhibition'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as StartRouteImport } from './routes/start'
+import { Route as VisitorRouteImport } from './routes/visitor'
+import { Route as CreateAlbumAboutRouteImport } from './routes/create.album.about'
+import { Route as CreateAlbumConfirmRouteImport } from './routes/create.album.confirm'
+import { Route as CreateAlbumCuratingRouteImport } from './routes/create.album.curating'
+import { Route as CreateAlbumInfoRouteImport } from './routes/create.album.info'
+import { Route as CreateAlbumPreviewRouteImport } from './routes/create.album.preview'
+import { Route as CreateAlbumRefineRouteImport } from './routes/create.album.refine'
+import { Route as CreateAlbumSigninRouteImport } from './routes/create.album.signin'
+import { Route as CreateAlbumTracksRouteImport } from './routes/create.album.tracks'
+import { Route as CreateAlbumVisualRouteImport } from './routes/create.album.visual'
+import { Route as CreateExhibitionAboutRouteImport } from './routes/create.exhibition.about'
+import { Route as CreateExhibitionConfirmRouteImport } from './routes/create.exhibition.confirm'
+import { Route as CreateExhibitionCuratingRouteImport } from './routes/create.exhibition.curating'
+import { Route as CreateExhibitionPreviewRouteImport } from './routes/create.exhibition.preview'
+import { Route as CreateExhibitionRefineRouteImport } from './routes/create.exhibition.refine'
+import { Route as CreateExhibitionSigninRouteImport } from './routes/create.exhibition.signin'
+import { Route as CreateExhibitionUploadRouteImport } from './routes/create.exhibition.upload'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlbumRoute = AlbumRouteImport.update({
+  id: '/album',
+  path: '/album',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollaborationRoute = CollaborationRouteImport.update({
+  id: '/collaboration',
+  path: '/collaboration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExhibitionRoute = ExhibitionRouteImport.update({
+  id: '/exhibition',
+  path: '/exhibition',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StartRoute = StartRouteImport.update({
+  id: '/start',
+  path: '/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisitorRoute = VisitorRouteImport.update({
+  id: '/visitor',
+  path: '/visitor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumAboutRoute = CreateAlbumAboutRouteImport.update({
+  id: '/create/album/about',
+  path: '/create/album/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumConfirmRoute = CreateAlbumConfirmRouteImport.update({
+  id: '/create/album/confirm',
+  path: '/create/album/confirm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumCuratingRoute = CreateAlbumCuratingRouteImport.update({
+  id: '/create/album/curating',
+  path: '/create/album/curating',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumInfoRoute = CreateAlbumInfoRouteImport.update({
+  id: '/create/album/info',
+  path: '/create/album/info',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumPreviewRoute = CreateAlbumPreviewRouteImport.update({
+  id: '/create/album/preview',
+  path: '/create/album/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumRefineRoute = CreateAlbumRefineRouteImport.update({
+  id: '/create/album/refine',
+  path: '/create/album/refine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumSigninRoute = CreateAlbumSigninRouteImport.update({
+  id: '/create/album/signin',
+  path: '/create/album/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumTracksRoute = CreateAlbumTracksRouteImport.update({
+  id: '/create/album/tracks',
+  path: '/create/album/tracks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumVisualRoute = CreateAlbumVisualRouteImport.update({
+  id: '/create/album/visual',
+  path: '/create/album/visual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateExhibitionAboutRoute = CreateExhibitionAboutRouteImport.update({
+  id: '/create/exhibition/about',
+  path: '/create/exhibition/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateExhibitionConfirmRoute = CreateExhibitionConfirmRouteImport.update({
+  id: '/create/exhibition/confirm',
+  path: '/create/exhibition/confirm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateExhibitionCuratingRoute =
+  CreateExhibitionCuratingRouteImport.update({
+    id: '/create/exhibition/curating',
+    path: '/create/exhibition/curating',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CreateExhibitionPreviewRoute = CreateExhibitionPreviewRouteImport.update({
+  id: '/create/exhibition/preview',
+  path: '/create/exhibition/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateExhibitionRefineRoute = CreateExhibitionRefineRouteImport.update({
+  id: '/create/exhibition/refine',
+  path: '/create/exhibition/refine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateExhibitionSigninRoute = CreateExhibitionSigninRouteImport.update({
+  id: '/create/exhibition/signin',
+  path: '/create/exhibition/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateExhibitionUploadRoute = CreateExhibitionUploadRouteImport.update({
+  id: '/create/exhibition/upload',
+  path: '/create/exhibition/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/album': typeof AlbumRoute
+  '/collaboration': typeof CollaborationRoute
+  '/exhibition': typeof ExhibitionRoute
+  '/signin': typeof SigninRoute
+  '/start': typeof StartRoute
+  '/visitor': typeof VisitorRoute
+  '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/confirm': typeof CreateAlbumConfirmRoute
+  '/create/album/curating': typeof CreateAlbumCuratingRoute
+  '/create/album/info': typeof CreateAlbumInfoRoute
+  '/create/album/preview': typeof CreateAlbumPreviewRoute
+  '/create/album/refine': typeof CreateAlbumRefineRoute
+  '/create/album/signin': typeof CreateAlbumSigninRoute
+  '/create/album/tracks': typeof CreateAlbumTracksRoute
+  '/create/album/visual': typeof CreateAlbumVisualRoute
+  '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
+  '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
+  '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
+  '/create/exhibition/refine': typeof CreateExhibitionRefineRoute
+  '/create/exhibition/signin': typeof CreateExhibitionSigninRoute
+  '/create/exhibition/upload': typeof CreateExhibitionUploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/album': typeof AlbumRoute
+  '/collaboration': typeof CollaborationRoute
+  '/exhibition': typeof ExhibitionRoute
+  '/signin': typeof SigninRoute
+  '/start': typeof StartRoute
+  '/visitor': typeof VisitorRoute
+  '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/confirm': typeof CreateAlbumConfirmRoute
+  '/create/album/curating': typeof CreateAlbumCuratingRoute
+  '/create/album/info': typeof CreateAlbumInfoRoute
+  '/create/album/preview': typeof CreateAlbumPreviewRoute
+  '/create/album/refine': typeof CreateAlbumRefineRoute
+  '/create/album/signin': typeof CreateAlbumSigninRoute
+  '/create/album/tracks': typeof CreateAlbumTracksRoute
+  '/create/album/visual': typeof CreateAlbumVisualRoute
+  '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
+  '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
+  '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
+  '/create/exhibition/refine': typeof CreateExhibitionRefineRoute
+  '/create/exhibition/signin': typeof CreateExhibitionSigninRoute
+  '/create/exhibition/upload': typeof CreateExhibitionUploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/album': typeof AlbumRoute
+  '/collaboration': typeof CollaborationRoute
+  '/exhibition': typeof ExhibitionRoute
+  '/signin': typeof SigninRoute
+  '/start': typeof StartRoute
+  '/visitor': typeof VisitorRoute
+  '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/confirm': typeof CreateAlbumConfirmRoute
+  '/create/album/curating': typeof CreateAlbumCuratingRoute
+  '/create/album/info': typeof CreateAlbumInfoRoute
+  '/create/album/preview': typeof CreateAlbumPreviewRoute
+  '/create/album/refine': typeof CreateAlbumRefineRoute
+  '/create/album/signin': typeof CreateAlbumSigninRoute
+  '/create/album/tracks': typeof CreateAlbumTracksRoute
+  '/create/album/visual': typeof CreateAlbumVisualRoute
+  '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
+  '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
+  '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
+  '/create/exhibition/refine': typeof CreateExhibitionRefineRoute
+  '/create/exhibition/signin': typeof CreateExhibitionSigninRoute
+  '/create/exhibition/upload': typeof CreateExhibitionUploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/album'
+    | '/collaboration'
+    | '/exhibition'
+    | '/signin'
+    | '/start'
+    | '/visitor'
+    | '/create/album/about'
+    | '/create/album/confirm'
+    | '/create/album/curating'
+    | '/create/album/info'
+    | '/create/album/preview'
+    | '/create/album/refine'
+    | '/create/album/signin'
+    | '/create/album/tracks'
+    | '/create/album/visual'
+    | '/create/exhibition/about'
+    | '/create/exhibition/confirm'
+    | '/create/exhibition/curating'
+    | '/create/exhibition/preview'
+    | '/create/exhibition/refine'
+    | '/create/exhibition/signin'
+    | '/create/exhibition/upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/album'
+    | '/collaboration'
+    | '/exhibition'
+    | '/signin'
+    | '/start'
+    | '/visitor'
+    | '/create/album/about'
+    | '/create/album/confirm'
+    | '/create/album/curating'
+    | '/create/album/info'
+    | '/create/album/preview'
+    | '/create/album/refine'
+    | '/create/album/signin'
+    | '/create/album/tracks'
+    | '/create/album/visual'
+    | '/create/exhibition/about'
+    | '/create/exhibition/confirm'
+    | '/create/exhibition/curating'
+    | '/create/exhibition/preview'
+    | '/create/exhibition/refine'
+    | '/create/exhibition/signin'
+    | '/create/exhibition/upload'
+  id:
+    | '__root__'
+    | '/'
+    | '/album'
+    | '/collaboration'
+    | '/exhibition'
+    | '/signin'
+    | '/start'
+    | '/visitor'
+    | '/create/album/about'
+    | '/create/album/confirm'
+    | '/create/album/curating'
+    | '/create/album/info'
+    | '/create/album/preview'
+    | '/create/album/refine'
+    | '/create/album/signin'
+    | '/create/album/tracks'
+    | '/create/album/visual'
+    | '/create/exhibition/about'
+    | '/create/exhibition/confirm'
+    | '/create/exhibition/curating'
+    | '/create/exhibition/preview'
+    | '/create/exhibition/refine'
+    | '/create/exhibition/signin'
+    | '/create/exhibition/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlbumRoute: typeof AlbumRoute
+  CollaborationRoute: typeof CollaborationRoute
+  ExhibitionRoute: typeof ExhibitionRoute
+  SigninRoute: typeof SigninRoute
+  StartRoute: typeof StartRoute
+  VisitorRoute: typeof VisitorRoute
+  CreateAlbumAboutRoute: typeof CreateAlbumAboutRoute
+  CreateAlbumConfirmRoute: typeof CreateAlbumConfirmRoute
+  CreateAlbumCuratingRoute: typeof CreateAlbumCuratingRoute
+  CreateAlbumInfoRoute: typeof CreateAlbumInfoRoute
+  CreateAlbumPreviewRoute: typeof CreateAlbumPreviewRoute
+  CreateAlbumRefineRoute: typeof CreateAlbumRefineRoute
+  CreateAlbumSigninRoute: typeof CreateAlbumSigninRoute
+  CreateAlbumTracksRoute: typeof CreateAlbumTracksRoute
+  CreateAlbumVisualRoute: typeof CreateAlbumVisualRoute
+  CreateExhibitionAboutRoute: typeof CreateExhibitionAboutRoute
+  CreateExhibitionConfirmRoute: typeof CreateExhibitionConfirmRoute
+  CreateExhibitionCuratingRoute: typeof CreateExhibitionCuratingRoute
+  CreateExhibitionPreviewRoute: typeof CreateExhibitionPreviewRoute
+  CreateExhibitionRefineRoute: typeof CreateExhibitionRefineRoute
+  CreateExhibitionSigninRoute: typeof CreateExhibitionSigninRoute
+  CreateExhibitionUploadRoute: typeof CreateExhibitionUploadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +339,187 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/album': {
+      id: '/album'
+      path: '/album'
+      fullPath: '/album'
+      preLoaderRoute: typeof AlbumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collaboration': {
+      id: '/collaboration'
+      path: '/collaboration'
+      fullPath: '/collaboration'
+      preLoaderRoute: typeof CollaborationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exhibition': {
+      id: '/exhibition'
+      path: '/exhibition'
+      fullPath: '/exhibition'
+      preLoaderRoute: typeof ExhibitionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/start': {
+      id: '/start'
+      path: '/start'
+      fullPath: '/start'
+      preLoaderRoute: typeof StartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/visitor': {
+      id: '/visitor'
+      path: '/visitor'
+      fullPath: '/visitor'
+      preLoaderRoute: typeof VisitorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/about': {
+      id: '/create/album/about'
+      path: '/create/album/about'
+      fullPath: '/create/album/about'
+      preLoaderRoute: typeof CreateAlbumAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/confirm': {
+      id: '/create/album/confirm'
+      path: '/create/album/confirm'
+      fullPath: '/create/album/confirm'
+      preLoaderRoute: typeof CreateAlbumConfirmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/curating': {
+      id: '/create/album/curating'
+      path: '/create/album/curating'
+      fullPath: '/create/album/curating'
+      preLoaderRoute: typeof CreateAlbumCuratingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/info': {
+      id: '/create/album/info'
+      path: '/create/album/info'
+      fullPath: '/create/album/info'
+      preLoaderRoute: typeof CreateAlbumInfoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/preview': {
+      id: '/create/album/preview'
+      path: '/create/album/preview'
+      fullPath: '/create/album/preview'
+      preLoaderRoute: typeof CreateAlbumPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/refine': {
+      id: '/create/album/refine'
+      path: '/create/album/refine'
+      fullPath: '/create/album/refine'
+      preLoaderRoute: typeof CreateAlbumRefineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/signin': {
+      id: '/create/album/signin'
+      path: '/create/album/signin'
+      fullPath: '/create/album/signin'
+      preLoaderRoute: typeof CreateAlbumSigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/tracks': {
+      id: '/create/album/tracks'
+      path: '/create/album/tracks'
+      fullPath: '/create/album/tracks'
+      preLoaderRoute: typeof CreateAlbumTracksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/visual': {
+      id: '/create/album/visual'
+      path: '/create/album/visual'
+      fullPath: '/create/album/visual'
+      preLoaderRoute: typeof CreateAlbumVisualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/about': {
+      id: '/create/exhibition/about'
+      path: '/create/exhibition/about'
+      fullPath: '/create/exhibition/about'
+      preLoaderRoute: typeof CreateExhibitionAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/confirm': {
+      id: '/create/exhibition/confirm'
+      path: '/create/exhibition/confirm'
+      fullPath: '/create/exhibition/confirm'
+      preLoaderRoute: typeof CreateExhibitionConfirmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/curating': {
+      id: '/create/exhibition/curating'
+      path: '/create/exhibition/curating'
+      fullPath: '/create/exhibition/curating'
+      preLoaderRoute: typeof CreateExhibitionCuratingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/preview': {
+      id: '/create/exhibition/preview'
+      path: '/create/exhibition/preview'
+      fullPath: '/create/exhibition/preview'
+      preLoaderRoute: typeof CreateExhibitionPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/refine': {
+      id: '/create/exhibition/refine'
+      path: '/create/exhibition/refine'
+      fullPath: '/create/exhibition/refine'
+      preLoaderRoute: typeof CreateExhibitionRefineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/signin': {
+      id: '/create/exhibition/signin'
+      path: '/create/exhibition/signin'
+      fullPath: '/create/exhibition/signin'
+      preLoaderRoute: typeof CreateExhibitionSigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/upload': {
+      id: '/create/exhibition/upload'
+      path: '/create/exhibition/upload'
+      fullPath: '/create/exhibition/upload'
+      preLoaderRoute: typeof CreateExhibitionUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlbumRoute: AlbumRoute,
+  CollaborationRoute: CollaborationRoute,
+  ExhibitionRoute: ExhibitionRoute,
+  SigninRoute: SigninRoute,
+  StartRoute: StartRoute,
+  VisitorRoute: VisitorRoute,
+  CreateAlbumAboutRoute: CreateAlbumAboutRoute,
+  CreateAlbumConfirmRoute: CreateAlbumConfirmRoute,
+  CreateAlbumCuratingRoute: CreateAlbumCuratingRoute,
+  CreateAlbumInfoRoute: CreateAlbumInfoRoute,
+  CreateAlbumPreviewRoute: CreateAlbumPreviewRoute,
+  CreateAlbumRefineRoute: CreateAlbumRefineRoute,
+  CreateAlbumSigninRoute: CreateAlbumSigninRoute,
+  CreateAlbumTracksRoute: CreateAlbumTracksRoute,
+  CreateAlbumVisualRoute: CreateAlbumVisualRoute,
+  CreateExhibitionAboutRoute: CreateExhibitionAboutRoute,
+  CreateExhibitionConfirmRoute: CreateExhibitionConfirmRoute,
+  CreateExhibitionCuratingRoute: CreateExhibitionCuratingRoute,
+  CreateExhibitionPreviewRoute: CreateExhibitionPreviewRoute,
+  CreateExhibitionRefineRoute: CreateExhibitionRefineRoute,
+  CreateExhibitionSigninRoute: CreateExhibitionSigninRoute,
+  CreateExhibitionUploadRoute: CreateExhibitionUploadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

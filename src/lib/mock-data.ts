@@ -193,7 +193,7 @@ export const collaboration = {
     "서연은 성수동의 비워진 건물을 한 달간 촬영했고, 도윤은 철거 전 그 안에서 녹음하기를 청했습니다. 서로를 위해 만든 작업이 아니었지만 이제 분리할 수 없습니다.",
 };
 
-export const seedComments: Record<string, { id: string; name: string; text: string; when: string }[]> = {
+export const seedComments = {
   exhibition: [
     { id: "c1", name: "Minji", text: "Room 3 stopped me for a full minute. Thank you for opening this.", when: "2 days ago" },
     { id: "c2", name: "Aleks", text: "The order of the works does something — it really does fall and return.", when: "5 days ago" },
