@@ -10,10 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlbumRouteImport } from './routes/album'
+import { Route as CollaborationRouteImport } from './routes/collaboration'
 import { Route as ExhibitionRouteImport } from './routes/exhibition'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as StartRouteImport } from './routes/start'
+import { Route as VisitorRouteImport } from './routes/visitor'
 import { Route as CreateAlbumAboutRouteImport } from './routes/create.album.about'
+import { Route as CreateAlbumConfirmRouteImport } from './routes/create.album.confirm'
 import { Route as CreateAlbumCuratingRouteImport } from './routes/create.album.curating'
 import { Route as CreateAlbumInfoRouteImport } from './routes/create.album.info'
 import { Route as CreateAlbumPreviewRouteImport } from './routes/create.album.preview'
@@ -34,6 +38,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlbumRoute = AlbumRouteImport.update({
+  id: '/album',
+  path: '/album',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollaborationRoute = CollaborationRouteImport.update({
+  id: '/collaboration',
+  path: '/collaboration',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExhibitionRoute = ExhibitionRouteImport.update({
   id: '/exhibition',
   path: '/exhibition',
@@ -49,9 +63,19 @@ const StartRoute = StartRouteImport.update({
   path: '/start',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisitorRoute = VisitorRouteImport.update({
+  id: '/visitor',
+  path: '/visitor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateAlbumAboutRoute = CreateAlbumAboutRouteImport.update({
   id: '/create/album/about',
   path: '/create/album/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumConfirmRoute = CreateAlbumConfirmRouteImport.update({
+  id: '/create/album/confirm',
+  path: '/create/album/confirm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateAlbumCuratingRoute = CreateAlbumCuratingRouteImport.update({
@@ -128,10 +152,14 @@ const CreateExhibitionUploadRoute = CreateExhibitionUploadRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/album': typeof AlbumRoute
+  '/collaboration': typeof CollaborationRoute
   '/exhibition': typeof ExhibitionRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
+  '/visitor': typeof VisitorRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/confirm': typeof CreateAlbumConfirmRoute
   '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
   '/create/album/preview': typeof CreateAlbumPreviewRoute
@@ -149,10 +177,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/album': typeof AlbumRoute
+  '/collaboration': typeof CollaborationRoute
   '/exhibition': typeof ExhibitionRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
+  '/visitor': typeof VisitorRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/confirm': typeof CreateAlbumConfirmRoute
   '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
   '/create/album/preview': typeof CreateAlbumPreviewRoute
@@ -171,10 +203,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/album': typeof AlbumRoute
+  '/collaboration': typeof CollaborationRoute
   '/exhibition': typeof ExhibitionRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
+  '/visitor': typeof VisitorRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/confirm': typeof CreateAlbumConfirmRoute
   '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
   '/create/album/preview': typeof CreateAlbumPreviewRoute
@@ -194,10 +230,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/album'
+    | '/collaboration'
     | '/exhibition'
     | '/signin'
     | '/start'
+    | '/visitor'
     | '/create/album/about'
+    | '/create/album/confirm'
     | '/create/album/curating'
     | '/create/album/info'
     | '/create/album/preview'
@@ -215,10 +255,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/album'
+    | '/collaboration'
     | '/exhibition'
     | '/signin'
     | '/start'
+    | '/visitor'
     | '/create/album/about'
+    | '/create/album/confirm'
     | '/create/album/curating'
     | '/create/album/info'
     | '/create/album/preview'
@@ -236,10 +280,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/album'
+    | '/collaboration'
     | '/exhibition'
     | '/signin'
     | '/start'
+    | '/visitor'
     | '/create/album/about'
+    | '/create/album/confirm'
     | '/create/album/curating'
     | '/create/album/info'
     | '/create/album/preview'
@@ -258,10 +306,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlbumRoute: typeof AlbumRoute
+  CollaborationRoute: typeof CollaborationRoute
   ExhibitionRoute: typeof ExhibitionRoute
   SigninRoute: typeof SigninRoute
   StartRoute: typeof StartRoute
+  VisitorRoute: typeof VisitorRoute
   CreateAlbumAboutRoute: typeof CreateAlbumAboutRoute
+  CreateAlbumConfirmRoute: typeof CreateAlbumConfirmRoute
   CreateAlbumCuratingRoute: typeof CreateAlbumCuratingRoute
   CreateAlbumInfoRoute: typeof CreateAlbumInfoRoute
   CreateAlbumPreviewRoute: typeof CreateAlbumPreviewRoute
@@ -287,6 +339,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/album': {
+      id: '/album'
+      path: '/album'
+      fullPath: '/album'
+      preLoaderRoute: typeof AlbumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collaboration': {
+      id: '/collaboration'
+      path: '/collaboration'
+      fullPath: '/collaboration'
+      preLoaderRoute: typeof CollaborationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/exhibition': {
       id: '/exhibition'
       path: '/exhibition'
@@ -308,11 +374,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/visitor': {
+      id: '/visitor'
+      path: '/visitor'
+      fullPath: '/visitor'
+      preLoaderRoute: typeof VisitorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create/album/about': {
       id: '/create/album/about'
       path: '/create/album/about'
       fullPath: '/create/album/about'
       preLoaderRoute: typeof CreateAlbumAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/confirm': {
+      id: '/create/album/confirm'
+      path: '/create/album/confirm'
+      fullPath: '/create/album/confirm'
+      preLoaderRoute: typeof CreateAlbumConfirmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create/album/curating': {
@@ -418,10 +498,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlbumRoute: AlbumRoute,
+  CollaborationRoute: CollaborationRoute,
   ExhibitionRoute: ExhibitionRoute,
   SigninRoute: SigninRoute,
   StartRoute: StartRoute,
+  VisitorRoute: VisitorRoute,
   CreateAlbumAboutRoute: CreateAlbumAboutRoute,
+  CreateAlbumConfirmRoute: CreateAlbumConfirmRoute,
   CreateAlbumCuratingRoute: CreateAlbumCuratingRoute,
   CreateAlbumInfoRoute: CreateAlbumInfoRoute,
   CreateAlbumPreviewRoute: CreateAlbumPreviewRoute,
