@@ -10,16 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExhibitionRouteImport } from './routes/exhibition'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as CreateExhibitionAboutRouteImport } from './routes/create.exhibition.about'
+import { Route as CreateExhibitionConfirmRouteImport } from './routes/create.exhibition.confirm'
 import { Route as CreateExhibitionCuratingRouteImport } from './routes/create.exhibition.curating'
+import { Route as CreateExhibitionPreviewRouteImport } from './routes/create.exhibition.preview'
 import { Route as CreateExhibitionRefineRouteImport } from './routes/create.exhibition.refine'
+import { Route as CreateExhibitionSigninRouteImport } from './routes/create.exhibition.signin'
 import { Route as CreateExhibitionUploadRouteImport } from './routes/create.exhibition.upload'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExhibitionRoute = ExhibitionRouteImport.update({
+  id: '/exhibition',
+  path: '/exhibition',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SigninRoute = SigninRouteImport.update({
@@ -37,15 +46,30 @@ const CreateExhibitionAboutRoute = CreateExhibitionAboutRouteImport.update({
   path: '/create/exhibition/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreateExhibitionConfirmRoute = CreateExhibitionConfirmRouteImport.update({
+  id: '/create/exhibition/confirm',
+  path: '/create/exhibition/confirm',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateExhibitionCuratingRoute =
   CreateExhibitionCuratingRouteImport.update({
     id: '/create/exhibition/curating',
     path: '/create/exhibition/curating',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CreateExhibitionPreviewRoute = CreateExhibitionPreviewRouteImport.update({
+  id: '/create/exhibition/preview',
+  path: '/create/exhibition/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateExhibitionRefineRoute = CreateExhibitionRefineRouteImport.update({
   id: '/create/exhibition/refine',
   path: '/create/exhibition/refine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateExhibitionSigninRoute = CreateExhibitionSigninRouteImport.update({
+  id: '/create/exhibition/signin',
+  path: '/create/exhibition/signin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateExhibitionUploadRoute = CreateExhibitionUploadRouteImport.update({
@@ -56,69 +80,97 @@ const CreateExhibitionUploadRoute = CreateExhibitionUploadRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/exhibition': typeof ExhibitionRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
   '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
+  '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
   '/create/exhibition/refine': typeof CreateExhibitionRefineRoute
+  '/create/exhibition/signin': typeof CreateExhibitionSigninRoute
   '/create/exhibition/upload': typeof CreateExhibitionUploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/exhibition': typeof ExhibitionRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
   '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
+  '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
   '/create/exhibition/refine': typeof CreateExhibitionRefineRoute
+  '/create/exhibition/signin': typeof CreateExhibitionSigninRoute
   '/create/exhibition/upload': typeof CreateExhibitionUploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/exhibition': typeof ExhibitionRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
+  '/create/exhibition/confirm': typeof CreateExhibitionConfirmRoute
   '/create/exhibition/curating': typeof CreateExhibitionCuratingRoute
+  '/create/exhibition/preview': typeof CreateExhibitionPreviewRoute
   '/create/exhibition/refine': typeof CreateExhibitionRefineRoute
+  '/create/exhibition/signin': typeof CreateExhibitionSigninRoute
   '/create/exhibition/upload': typeof CreateExhibitionUploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/exhibition'
     | '/signin'
     | '/start'
     | '/create/exhibition/about'
+    | '/create/exhibition/confirm'
     | '/create/exhibition/curating'
+    | '/create/exhibition/preview'
     | '/create/exhibition/refine'
+    | '/create/exhibition/signin'
     | '/create/exhibition/upload'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/exhibition'
     | '/signin'
     | '/start'
     | '/create/exhibition/about'
+    | '/create/exhibition/confirm'
     | '/create/exhibition/curating'
+    | '/create/exhibition/preview'
     | '/create/exhibition/refine'
+    | '/create/exhibition/signin'
     | '/create/exhibition/upload'
   id:
     | '__root__'
     | '/'
+    | '/exhibition'
     | '/signin'
     | '/start'
     | '/create/exhibition/about'
+    | '/create/exhibition/confirm'
     | '/create/exhibition/curating'
+    | '/create/exhibition/preview'
     | '/create/exhibition/refine'
+    | '/create/exhibition/signin'
     | '/create/exhibition/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExhibitionRoute: typeof ExhibitionRoute
   SigninRoute: typeof SigninRoute
   StartRoute: typeof StartRoute
   CreateExhibitionAboutRoute: typeof CreateExhibitionAboutRoute
+  CreateExhibitionConfirmRoute: typeof CreateExhibitionConfirmRoute
   CreateExhibitionCuratingRoute: typeof CreateExhibitionCuratingRoute
+  CreateExhibitionPreviewRoute: typeof CreateExhibitionPreviewRoute
   CreateExhibitionRefineRoute: typeof CreateExhibitionRefineRoute
+  CreateExhibitionSigninRoute: typeof CreateExhibitionSigninRoute
   CreateExhibitionUploadRoute: typeof CreateExhibitionUploadRoute
 }
 
@@ -129,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exhibition': {
+      id: '/exhibition'
+      path: '/exhibition'
+      fullPath: '/exhibition'
+      preLoaderRoute: typeof ExhibitionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signin': {
@@ -152,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateExhibitionAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create/exhibition/confirm': {
+      id: '/create/exhibition/confirm'
+      path: '/create/exhibition/confirm'
+      fullPath: '/create/exhibition/confirm'
+      preLoaderRoute: typeof CreateExhibitionConfirmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create/exhibition/curating': {
       id: '/create/exhibition/curating'
       path: '/create/exhibition/curating'
@@ -159,11 +225,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateExhibitionCuratingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create/exhibition/preview': {
+      id: '/create/exhibition/preview'
+      path: '/create/exhibition/preview'
+      fullPath: '/create/exhibition/preview'
+      preLoaderRoute: typeof CreateExhibitionPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create/exhibition/refine': {
       id: '/create/exhibition/refine'
       path: '/create/exhibition/refine'
       fullPath: '/create/exhibition/refine'
       preLoaderRoute: typeof CreateExhibitionRefineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/exhibition/signin': {
+      id: '/create/exhibition/signin'
+      path: '/create/exhibition/signin'
+      fullPath: '/create/exhibition/signin'
+      preLoaderRoute: typeof CreateExhibitionSigninRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create/exhibition/upload': {
@@ -178,11 +258,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExhibitionRoute: ExhibitionRoute,
   SigninRoute: SigninRoute,
   StartRoute: StartRoute,
   CreateExhibitionAboutRoute: CreateExhibitionAboutRoute,
+  CreateExhibitionConfirmRoute: CreateExhibitionConfirmRoute,
   CreateExhibitionCuratingRoute: CreateExhibitionCuratingRoute,
+  CreateExhibitionPreviewRoute: CreateExhibitionPreviewRoute,
   CreateExhibitionRefineRoute: CreateExhibitionRefineRoute,
+  CreateExhibitionSigninRoute: CreateExhibitionSigninRoute,
   CreateExhibitionUploadRoute: CreateExhibitionUploadRoute,
 }
 export const routeTree = rootRouteImport
