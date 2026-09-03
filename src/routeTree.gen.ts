@@ -14,7 +14,11 @@ import { Route as ExhibitionRouteImport } from './routes/exhibition'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as CreateAlbumAboutRouteImport } from './routes/create.album.about'
+import { Route as CreateAlbumCuratingRouteImport } from './routes/create.album.curating'
 import { Route as CreateAlbumInfoRouteImport } from './routes/create.album.info'
+import { Route as CreateAlbumPreviewRouteImport } from './routes/create.album.preview'
+import { Route as CreateAlbumRefineRouteImport } from './routes/create.album.refine'
+import { Route as CreateAlbumSigninRouteImport } from './routes/create.album.signin'
 import { Route as CreateAlbumTracksRouteImport } from './routes/create.album.tracks'
 import { Route as CreateAlbumVisualRouteImport } from './routes/create.album.visual'
 import { Route as CreateExhibitionAboutRouteImport } from './routes/create.exhibition.about'
@@ -50,9 +54,29 @@ const CreateAlbumAboutRoute = CreateAlbumAboutRouteImport.update({
   path: '/create/album/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreateAlbumCuratingRoute = CreateAlbumCuratingRouteImport.update({
+  id: '/create/album/curating',
+  path: '/create/album/curating',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateAlbumInfoRoute = CreateAlbumInfoRouteImport.update({
   id: '/create/album/info',
   path: '/create/album/info',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumPreviewRoute = CreateAlbumPreviewRouteImport.update({
+  id: '/create/album/preview',
+  path: '/create/album/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumRefineRoute = CreateAlbumRefineRouteImport.update({
+  id: '/create/album/refine',
+  path: '/create/album/refine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAlbumSigninRoute = CreateAlbumSigninRouteImport.update({
+  id: '/create/album/signin',
+  path: '/create/album/signin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateAlbumTracksRoute = CreateAlbumTracksRouteImport.update({
@@ -108,7 +132,11 @@ export interface FileRoutesByFullPath {
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
+  '/create/album/preview': typeof CreateAlbumPreviewRoute
+  '/create/album/refine': typeof CreateAlbumRefineRoute
+  '/create/album/signin': typeof CreateAlbumSigninRoute
   '/create/album/tracks': typeof CreateAlbumTracksRoute
   '/create/album/visual': typeof CreateAlbumVisualRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
@@ -125,7 +153,11 @@ export interface FileRoutesByTo {
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
+  '/create/album/preview': typeof CreateAlbumPreviewRoute
+  '/create/album/refine': typeof CreateAlbumRefineRoute
+  '/create/album/signin': typeof CreateAlbumSigninRoute
   '/create/album/tracks': typeof CreateAlbumTracksRoute
   '/create/album/visual': typeof CreateAlbumVisualRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
@@ -143,7 +175,11 @@ export interface FileRoutesById {
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
   '/create/album/about': typeof CreateAlbumAboutRoute
+  '/create/album/curating': typeof CreateAlbumCuratingRoute
   '/create/album/info': typeof CreateAlbumInfoRoute
+  '/create/album/preview': typeof CreateAlbumPreviewRoute
+  '/create/album/refine': typeof CreateAlbumRefineRoute
+  '/create/album/signin': typeof CreateAlbumSigninRoute
   '/create/album/tracks': typeof CreateAlbumTracksRoute
   '/create/album/visual': typeof CreateAlbumVisualRoute
   '/create/exhibition/about': typeof CreateExhibitionAboutRoute
@@ -162,7 +198,11 @@ export interface FileRouteTypes {
     | '/signin'
     | '/start'
     | '/create/album/about'
+    | '/create/album/curating'
     | '/create/album/info'
+    | '/create/album/preview'
+    | '/create/album/refine'
+    | '/create/album/signin'
     | '/create/album/tracks'
     | '/create/album/visual'
     | '/create/exhibition/about'
@@ -179,7 +219,11 @@ export interface FileRouteTypes {
     | '/signin'
     | '/start'
     | '/create/album/about'
+    | '/create/album/curating'
     | '/create/album/info'
+    | '/create/album/preview'
+    | '/create/album/refine'
+    | '/create/album/signin'
     | '/create/album/tracks'
     | '/create/album/visual'
     | '/create/exhibition/about'
@@ -196,7 +240,11 @@ export interface FileRouteTypes {
     | '/signin'
     | '/start'
     | '/create/album/about'
+    | '/create/album/curating'
     | '/create/album/info'
+    | '/create/album/preview'
+    | '/create/album/refine'
+    | '/create/album/signin'
     | '/create/album/tracks'
     | '/create/album/visual'
     | '/create/exhibition/about'
@@ -214,7 +262,11 @@ export interface RootRouteChildren {
   SigninRoute: typeof SigninRoute
   StartRoute: typeof StartRoute
   CreateAlbumAboutRoute: typeof CreateAlbumAboutRoute
+  CreateAlbumCuratingRoute: typeof CreateAlbumCuratingRoute
   CreateAlbumInfoRoute: typeof CreateAlbumInfoRoute
+  CreateAlbumPreviewRoute: typeof CreateAlbumPreviewRoute
+  CreateAlbumRefineRoute: typeof CreateAlbumRefineRoute
+  CreateAlbumSigninRoute: typeof CreateAlbumSigninRoute
   CreateAlbumTracksRoute: typeof CreateAlbumTracksRoute
   CreateAlbumVisualRoute: typeof CreateAlbumVisualRoute
   CreateExhibitionAboutRoute: typeof CreateExhibitionAboutRoute
@@ -263,11 +315,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateAlbumAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create/album/curating': {
+      id: '/create/album/curating'
+      path: '/create/album/curating'
+      fullPath: '/create/album/curating'
+      preLoaderRoute: typeof CreateAlbumCuratingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create/album/info': {
       id: '/create/album/info'
       path: '/create/album/info'
       fullPath: '/create/album/info'
       preLoaderRoute: typeof CreateAlbumInfoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/preview': {
+      id: '/create/album/preview'
+      path: '/create/album/preview'
+      fullPath: '/create/album/preview'
+      preLoaderRoute: typeof CreateAlbumPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/refine': {
+      id: '/create/album/refine'
+      path: '/create/album/refine'
+      fullPath: '/create/album/refine'
+      preLoaderRoute: typeof CreateAlbumRefineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create/album/signin': {
+      id: '/create/album/signin'
+      path: '/create/album/signin'
+      fullPath: '/create/album/signin'
+      preLoaderRoute: typeof CreateAlbumSigninRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create/album/tracks': {
@@ -342,7 +422,11 @@ const rootRouteChildren: RootRouteChildren = {
   SigninRoute: SigninRoute,
   StartRoute: StartRoute,
   CreateAlbumAboutRoute: CreateAlbumAboutRoute,
+  CreateAlbumCuratingRoute: CreateAlbumCuratingRoute,
   CreateAlbumInfoRoute: CreateAlbumInfoRoute,
+  CreateAlbumPreviewRoute: CreateAlbumPreviewRoute,
+  CreateAlbumRefineRoute: CreateAlbumRefineRoute,
+  CreateAlbumSigninRoute: CreateAlbumSigninRoute,
   CreateAlbumTracksRoute: CreateAlbumTracksRoute,
   CreateAlbumVisualRoute: CreateAlbumVisualRoute,
   CreateExhibitionAboutRoute: CreateExhibitionAboutRoute,
