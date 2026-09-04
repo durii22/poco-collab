@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Play, Video, ArrowRight, Image as ImageIcon } from "lucide-react";
 import { album, artworks, fmt, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { useProjectMode } from "@/lib/project-mode";
 import { useLang, useT } from "@/lib/i18n";
 import { PlayerBar, useMockPlayer } from "./AudioPlayer";
 import { Comments, EngagementBar, FollowButton, InquiryModal } from "./Engagement";
+import { CollaboratorSlot } from "./ProjectSummary";
 import { Button } from "./ui";
 import { cn } from "@/lib/utils";
 
