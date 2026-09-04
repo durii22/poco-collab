@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { FlowShell } from "@/components/poco/FlowShell";
 import { albumSteps, StepFooter } from "@/components/poco/Steps";
 import { AlbumView } from "@/components/poco/AlbumView";
+import { ProjectSummary } from "@/components/poco/ProjectSummary";
 import { SectionTitle } from "@/components/poco/ui";
 import { useT } from "@/lib/i18n";
 import { usePoco } from "@/lib/poco-store";
