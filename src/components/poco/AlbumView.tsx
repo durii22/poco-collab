@@ -70,17 +70,22 @@ export function AlbumView({
         <p className="mt-2 text-[11px] text-ink-muted">Press play to start — nothing plays automatically.</p>
       </section>
 
-      {/* Visual artist credit */}
-      <section className="mx-auto mt-6 max-w-3xl px-4 sm:px-6">
-        <div className="panel flex items-center gap-4 p-4">
-          <img src={visualArtist.avatar} alt={visualArtist.name} loading="lazy" width={200} height={200} className="h-12 w-12 rounded-full object-cover" />
-          <div className="min-w-0 flex-1">
-            <p className="eyebrow">Visual artwork</p>
-            <p className="text-sm font-bold">{lang === "ko" ? visualArtist.nameKo : visualArtist.name}</p>
-            <p className="text-[11px] text-ink-muted">Cover and track visuals · © {visualArtist.name}</p>
+      {/* Visual artist credit — collaboration only */}
+      {visual ? (
+        <section className="mx-auto mt-6 max-w-3xl px-4 sm:px-6">
+          <div className="panel flex items-center gap-4 p-4">
+            <img src={visual.avatar} alt={visual.name} loading="lazy" width={200} height={200} className="h-12 w-12 rounded-full object-cover" />
+            <div className="min-w-0 flex-1">
+              <p className="eyebrow">Visual artwork</p>
+              <p className="text-sm font-bold">{lang === "ko" ? visual.nameKo : visual.name}</p>
+              <p className="text-[11px] text-ink-muted">Cover and track visuals · © {visual.name}</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
+
+      {/* Solo / decide-later: no visual artist, optional add-later CTA */}
+      <CollaboratorSlot kind="visual" />
 
       {/* Track list with stories and artworks between tracks */}
       <section className="mx-auto mt-12 max-w-3xl space-y-10 px-4 sm:px-6">
