@@ -25,23 +25,20 @@ export function ExhibitionView({
 }) {
   const t = useT();
   const { lang } = useLang();
-  const { state } = usePoco();
-  const c = state.collab;
+  const p = useProjectMode();
   const player = useMockPlayer(tracks);
   const [inquiry, setInquiry] = useState(false);
   const works = reordered ? [...artworks].reverse() : artworks;
 
-  // The music player only appears once a musician AND a track are attached.
-  const partner = directory.find((a) => a.id === c.partnerId && a.type === "musician") ?? null;
-  const chosenTrack = tracks.find((tr) => tr.id === c.workId) ?? null;
-  const soundtrack =
-    c.mode === "collab"
-      ? partner && chosenTrack
-        ? { name: partner.name, track: chosenTrack }
-        : null
-      : c.mode === null
-        ? { name: musician.name, track: tracks[0]! }
-        : null;
+  // The music player only appears in a real collaboration (musician AND track attached),
+  // or on the untouched visitor sample. Solo / decide-later never shows a musician.
+  const soundtrack = p.isCollaboration
+    ? p.partner && p.track
+      ? { name: p.partner.name, track: p.track }
+      : null
+    : p.isDemo
+      ? { name: musician.name, track: tracks[0]! }
+      : null;
 
   return (
     <div className={cn(warm && "[--primary:#ff9d5c]")}>
