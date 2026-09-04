@@ -28,6 +28,7 @@ function Preview() {
   return (
     <FlowShell steps={exhibitionSteps} current={5} wide>
       <SectionTitle eyebrow="Step 05" title={t("prevT")} sub={t("prevB")} />
+      <ProjectSummary />
       <div className="mt-6 overflow-hidden rounded-2xl border border-stroke-panel">
         <div className="max-h-[70vh] overflow-y-auto">
           <ExhibitionView
