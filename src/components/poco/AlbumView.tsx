@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Play, Video, ArrowRight, Image as ImageIcon } from "lucide-react";
 import { album, artworks, fmt, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { useProjectMode } from "@/lib/project-mode";
 import { useLang, useT } from "@/lib/i18n";
 import { PlayerBar, useMockPlayer } from "./AudioPlayer";
 import { Comments, EngagementBar, FollowButton, InquiryModal } from "./Engagement";
+import { CollaboratorSlot } from "./ProjectSummary";
 import { Button } from "./ui";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +26,15 @@ export function AlbumView({
   const player = useMockPlayer(tracks);
   const [inquiry, setInquiry] = useState<null | "collab" | "perf">(null);
   const list = reordered ? [...tracks].reverse() : tracks;
+  const p = useProjectMode();
+
+  // A visual collaborator only exists in a real collaboration (or the visitor sample).
+  const visual = p.isDemo
+    ? { name: visualArtist.name, nameKo: visualArtist.nameKo, avatar: visualArtist.avatar }
+    : p.isCollaboration && p.partner
+      ? { name: p.partner.name, nameKo: p.partner.nameKo, avatar: p.partner.avatar }
+      : null;
+  const showArtworks = visual !== null;
 
   return (
     <div className={cn(warm && "[--primary:#ff9d5c]")}>
@@ -59,17 +70,22 @@ export function AlbumView({
         <p className="mt-2 text-[11px] text-ink-muted">Press play to start — nothing plays automatically.</p>
       </section>
 
-      {/* Visual artist credit */}
-      <section className="mx-auto mt-6 max-w-3xl px-4 sm:px-6">
-        <div className="panel flex items-center gap-4 p-4">
-          <img src={visualArtist.avatar} alt={visualArtist.name} loading="lazy" width={200} height={200} className="h-12 w-12 rounded-full object-cover" />
-          <div className="min-w-0 flex-1">
-            <p className="eyebrow">Visual artwork</p>
-            <p className="text-sm font-bold">{lang === "ko" ? visualArtist.nameKo : visualArtist.name}</p>
-            <p className="text-[11px] text-ink-muted">Cover and track visuals · © {visualArtist.name}</p>
+      {/* Visual artist credit — collaboration only */}
+      {visual ? (
+        <section className="mx-auto mt-6 max-w-3xl px-4 sm:px-6">
+          <div className="panel flex items-center gap-4 p-4">
+            <img src={visual.avatar} alt={visual.name} loading="lazy" width={200} height={200} className="h-12 w-12 rounded-full object-cover" />
+            <div className="min-w-0 flex-1">
+              <p className="eyebrow">Visual artwork</p>
+              <p className="text-sm font-bold">{lang === "ko" ? visual.nameKo : visual.name}</p>
+              <p className="text-[11px] text-ink-muted">Cover and track visuals · © {visual.name}</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
+
+      {/* Solo / decide-later: no visual artist, optional add-later CTA */}
+      <CollaboratorSlot kind="visual" />
 
       {/* Track list with stories and artworks between tracks */}
       <section className="mx-auto mt-12 max-w-3xl space-y-10 px-4 sm:px-6">
@@ -118,7 +134,7 @@ export function AlbumView({
               </div>
             </article>
 
-            {artworks[i] ? (
+            {showArtworks && artworks[i] ? (
               <figure className="space-y-2">
                 <img src={artworks[i].src} alt={artworks[i].title} loading="lazy" width={1024} height={1280} className={cn("w-full object-cover", minimal ? "rounded-none" : "rounded-2xl")} />
                 <figcaption className="flex items-center gap-2 text-[11px] text-ink-muted">
@@ -134,13 +150,17 @@ export function AlbumView({
       <section className="mx-auto mt-14 max-w-3xl px-4 sm:px-6">
         <div className="panel space-y-1.5 p-5 text-sm text-ink-muted">
           <p className="eyebrow mb-2">{t("credits")}</p>
-          {album.credits.map((c) => (
-            <p key={c}>{c}</p>
-          ))}
+          {album.credits
+            .filter((c) => visual || !c.includes(visualArtist.name))
+            .map((c) => (
+              <p key={c}>{c}</p>
+            ))}
         </div>
-        <Link to="/exhibition" className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline">
-          {t("viewExhibition")}: {visualArtist.name} — Quiet Hours <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
+        {visual ? (
+          <Link to="/exhibition" className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline">
+            {t("viewExhibition")}: {visual.name} — Quiet Hours <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        ) : null}
       </section>
 
       {!preview && (
@@ -149,9 +169,11 @@ export function AlbumView({
           <div className="flex flex-wrap gap-2">
             <Button variant="outline" onClick={() => setInquiry("perf")}>{t("inqPerf")}</Button>
             <Button variant="outline" onClick={() => setInquiry("collab")}>{t("inqCollab")}</Button>
-            <Link to="/collaboration" className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2">
-              {t("viewCollab")}
-            </Link>
+            {p.isDemo || p.isCollaboration ? (
+              <Link to="/collaboration" className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2">
+                {t("viewCollab")}
+              </Link>
+            ) : null}
           </div>
           <Comments pageKey="album" />
           <InquiryModal

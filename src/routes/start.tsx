@@ -20,7 +20,7 @@ export const Route = createFileRoute("/start")({
 function Start() {
   const t = useT();
   const navigate = useNavigate();
-  const { set } = usePoco();
+  const { resetProject } = usePoco();
 
   const cards = [
     {
@@ -51,7 +51,7 @@ function Start() {
             <button
               key={c.key}
               onClick={() => {
-                set({ projectType: c.key });
+                resetProject(c.key);
                 navigate({ to: c.to });
               }}
               className="panel group flex flex-col items-start gap-4 p-6 text-left transition hover:border-primary/50 hover:bg-elev-1"

@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { FlowShell } from "@/components/poco/FlowShell";
 import { exhibitionSteps, StepFooter } from "@/components/poco/Steps";
 import { ExhibitionView } from "@/components/poco/ExhibitionView";
+import { ProjectSummary } from "@/components/poco/ProjectSummary";
 import { SectionTitle } from "@/components/poco/ui";
 import { useT } from "@/lib/i18n";
 import { usePoco } from "@/lib/poco-store";
@@ -27,6 +28,7 @@ function Preview() {
   return (
     <FlowShell steps={exhibitionSteps} current={5} wide>
       <SectionTitle eyebrow="Step 05" title={t("prevT")} sub={t("prevB")} />
+      <ProjectSummary />
       <div className="mt-6 overflow-hidden rounded-2xl border border-stroke-panel">
         <div className="max-h-[70vh] overflow-y-auto">
           <ExhibitionView

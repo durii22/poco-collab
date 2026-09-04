@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Disc3, ArrowRight } from "lucide-react";
-import { artworks, directory, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
-import { usePoco } from "@/lib/poco-store";
+import { artworks, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { useProjectMode } from "@/lib/project-mode";
 import { useLang, useT } from "@/lib/i18n";
 import { useMockPlayer, PlayerBar } from "./AudioPlayer";
 import { Comments, EngagementBar, FollowButton, InquiryModal } from "./Engagement";
+import { CollaboratorSlot } from "./ProjectSummary";
 import { Button } from "./ui";
 import { cn } from "@/lib/utils";
 
@@ -24,23 +25,20 @@ export function ExhibitionView({
 }) {
   const t = useT();
   const { lang } = useLang();
-  const { state } = usePoco();
-  const c = state.collab;
+  const p = useProjectMode();
   const player = useMockPlayer(tracks);
   const [inquiry, setInquiry] = useState(false);
   const works = reordered ? [...artworks].reverse() : artworks;
 
-  // The music player only appears once a musician AND a track are attached.
-  const partner = directory.find((a) => a.id === c.partnerId && a.type === "musician") ?? null;
-  const chosenTrack = tracks.find((tr) => tr.id === c.workId) ?? null;
-  const soundtrack =
-    c.mode === "collab"
-      ? partner && chosenTrack
-        ? { name: partner.name, track: chosenTrack }
-        : null
-      : c.mode === null
-        ? { name: musician.name, track: tracks[0]! }
-        : null;
+  // The music player only appears in a real collaboration (musician AND track attached),
+  // or on the untouched visitor sample. Solo / decide-later never shows a musician.
+  const soundtrack = p.isCollaboration
+    ? p.partner && p.track
+      ? { name: p.partner.name, track: p.track }
+      : null
+    : p.isDemo
+      ? { name: musician.name, track: tracks[0]! }
+      : null;
 
   return (
     <div className={cn(warm && "[--primary:#ff9d5c]")}>
@@ -91,6 +89,9 @@ export function ExhibitionView({
         </section>
       ) : null}
 
+      {/* Solo / decide-later: no musician, optional add-later CTA */}
+      <CollaboratorSlot kind="musician" />
+
       {/* Archive */}
       <section className="mx-auto mt-14 max-w-3xl space-y-16 px-4 sm:px-6">
         {works.map((w, i) => (
@@ -135,12 +136,14 @@ export function ExhibitionView({
             <Button variant="outline" onClick={() => setInquiry(true)}>
               {t("inqCollab")}
             </Button>
-            <Link
-              to="/collaboration"
-              className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2"
-            >
-              {t("viewCollab")}
-            </Link>
+            {p.isDemo || p.isCollaboration ? (
+              <Link
+                to="/collaboration"
+                className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2"
+              >
+                {t("viewCollab")}
+              </Link>
+            ) : null}
           </div>
           <Comments pageKey="exhibition" />
           <InquiryModal open={inquiry} onClose={() => setInquiry(false)} title={t("inqCollab")} />

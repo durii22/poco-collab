@@ -7,6 +7,7 @@ import { PlayerBar, useMockPlayer } from "@/components/poco/AudioPlayer";
 import { Button, SectionTitle } from "@/components/poco/ui";
 import { useLang, useT } from "@/lib/i18n";
 import { album, artworks, collaboration, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { useProjectMode } from "@/lib/project-mode";
 
 export const Route = createFileRoute("/collaboration")({
   head: () => ({
@@ -29,6 +30,38 @@ function Collab() {
   const { lang } = useLang();
   const player = useMockPlayer(tracks);
   const [modal, setModal] = useState<null | "collab" | "join">(null);
+  const p = useProjectMode();
+
+  // A shared collaboration page only exists when a collaborator was actually selected.
+  if (!p.isDemo && !p.isCollaboration) {
+    return (
+      <div className="min-h-screen">
+        <Header />
+        <main className="mx-auto max-w-3xl px-4 py-24 sm:px-6">
+          <SectionTitle
+            eyebrow="No collaboration"
+            title="Collaboration not selected yet"
+            sub="This project was created on its own, so there is no shared collaboration page. Add a collaborator to generate one."
+          />
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to={p.projectType === "album" ? "/album" : "/exhibition"}
+              className="inline-flex h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
+            >
+              {p.projectType === "album" ? t("viewAlbum") : t("viewExhibition")}
+            </Link>
+            <Link
+              to={p.projectType === "album" ? "/create/album/collaborate" : "/create/exhibition/collaborate"}
+              className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2"
+            >
+              Add a collaborator
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   const artistCard = (a: typeof visualArtist, role: string, to: string, who: string) => (
     <div className="panel space-y-3 p-5">

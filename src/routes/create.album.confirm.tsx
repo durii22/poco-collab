@@ -4,8 +4,9 @@ import { FlowShell } from "@/components/poco/FlowShell";
 import { albumSteps, StepFooter } from "@/components/poco/Steps";
 import { SectionTitle } from "@/components/poco/ui";
 import { useT } from "@/lib/i18n";
-import { album, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { album, musician, tracks } from "@/lib/mock-data";
 import { usePoco } from "@/lib/poco-store";
+import { modeLabel, useProjectMode } from "@/lib/project-mode";
 
 export const Route = createFileRoute("/create/album/confirm")({
   head: () => ({
@@ -24,14 +25,21 @@ function Confirm() {
   const navigate = useNavigate();
   const { state, set } = usePoco();
 
-  const rows = [
+  const p = useProjectMode();
+  const rows: [string, string][] = [
     ["Album", state.albumInfo.title || album.title],
     ["Musician", state.artist.name || musician.name],
     ["Tracks", `${state.uploadedTracks || tracks.length} tracks`],
-    ["Visuals", state.visualChoice === "later" ? "To be added" : `${visualArtist.name} — Quiet Hours`],
-    ["Refinements", state.refinements.length ? `${state.refinements.length} applied` : "None"],
-    ["Visibility", "Public link"],
+    ["Creation mode", modeLabel(p.mode)],
   ];
+  if (p.isCollaboration && p.partner) {
+    rows.push(["Collaborator", p.partner.name]);
+    rows.push(["Visuals", p.artwork ? `${p.artwork.title} — ${p.partner.name}` : "Not selected"]);
+  } else if (p.isLater) {
+    rows.push(["Collaboration", "Not selected yet"]);
+  }
+  rows.push(["Refinements", state.refinements.length ? `${state.refinements.length} applied` : "None"]);
+  rows.push(["Visibility", "Public link"]);
 
   return (
     <FlowShell steps={albumSteps} current={7}>
