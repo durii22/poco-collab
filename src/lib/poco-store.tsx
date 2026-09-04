@@ -212,6 +212,22 @@ export function PocoProvider({ children }: { children: ReactNode }) {
       setPilot: (patch) => set({ pilot: { ...state.pilot, ...patch } }),
       setPilotConfig: (patch) => set({ pilot: { ...state.pilot, config: { ...state.pilot.config, ...patch } } }),
       toggleFollow: (who) => set({ following: { ...state.following, [who]: !state.following[who] } }),
+      // Starting a new project wipes every project-level value from the previous one.
+      resetProject: (projectType) =>
+        persist({
+          ...state,
+          projectType,
+          artist: { ...defaultState.artist },
+          uploadedWorks: 0,
+          albumInfo: { ...defaultState.albumInfo },
+          uploadedTracks: 0,
+          coverUploaded: false,
+          visualChoice: null,
+          refinements: [],
+          published: { exhibition: false, album: false },
+          draftSavedAt: null,
+          collab: { ...defaultCollab },
+        }),
       reset: () => persist(defaultState),
     };
   }, [state, persist]);
