@@ -127,6 +127,7 @@ type Ctx = {
   setCollab: (patch: Partial<CollabState>) => void;
   setPilot: (patch: Partial<PilotState>) => void;
   setPilotConfig: (patch: Partial<PilotState["config"]>) => void;
+  resetProject: (projectType: ProjectType) => void;
   reset: () => void;
 };
 
