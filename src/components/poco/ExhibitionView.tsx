@@ -89,6 +89,9 @@ export function ExhibitionView({
         </section>
       ) : null}
 
+      {/* Solo / decide-later: no musician, optional add-later CTA */}
+      <CollaboratorSlot kind="musician" />
+
       {/* Archive */}
       <section className="mx-auto mt-14 max-w-3xl space-y-16 px-4 sm:px-6">
         {works.map((w, i) => (
