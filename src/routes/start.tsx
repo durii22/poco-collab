@@ -20,7 +20,7 @@ export const Route = createFileRoute("/start")({
 function Start() {
   const t = useT();
   const navigate = useNavigate();
-  const { set } = usePoco();
+  const { resetProject } = usePoco();
 
   const cards = [
     {
