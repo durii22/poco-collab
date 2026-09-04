@@ -4,8 +4,9 @@ import { FlowShell } from "@/components/poco/FlowShell";
 import { exhibitionSteps, StepFooter } from "@/components/poco/Steps";
 import { SectionTitle } from "@/components/poco/ui";
 import { useT } from "@/lib/i18n";
-import { artworks, exhibition, musician } from "@/lib/mock-data";
+import { artworks, exhibition } from "@/lib/mock-data";
 import { usePoco } from "@/lib/poco-store";
+import { modeLabel, useProjectMode } from "@/lib/project-mode";
 
 export const Route = createFileRoute("/create/exhibition/confirm")({
   head: () => ({
