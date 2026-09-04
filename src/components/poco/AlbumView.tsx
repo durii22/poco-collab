@@ -26,6 +26,15 @@ export function AlbumView({
   const player = useMockPlayer(tracks);
   const [inquiry, setInquiry] = useState<null | "collab" | "perf">(null);
   const list = reordered ? [...tracks].reverse() : tracks;
+  const p = useProjectMode();
+
+  // A visual collaborator only exists in a real collaboration (or the visitor sample).
+  const visual = p.isDemo
+    ? { name: visualArtist.name, nameKo: visualArtist.nameKo, avatar: visualArtist.avatar }
+    : p.isCollaboration && p.partner
+      ? { name: p.partner.name, nameKo: p.partner.name, avatar: p.partner.avatar }
+      : null;
+  const showArtworks = visual !== null;
 
   return (
     <div className={cn(warm && "[--primary:#ff9d5c]")}>
