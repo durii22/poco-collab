@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Disc3, ArrowRight } from "lucide-react";
-import { artworks, directory, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
-import { usePoco } from "@/lib/poco-store";
+import { artworks, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { useProjectMode } from "@/lib/project-mode";
 import { useLang, useT } from "@/lib/i18n";
 import { useMockPlayer, PlayerBar } from "./AudioPlayer";
 import { Comments, EngagementBar, FollowButton, InquiryModal } from "./Engagement";
+import { CollaboratorSlot } from "./ProjectSummary";
 import { Button } from "./ui";
 import { cn } from "@/lib/utils";
 
