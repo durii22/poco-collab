@@ -32,7 +32,7 @@ export function AlbumView({
   const visual = p.isDemo
     ? { name: visualArtist.name, nameKo: visualArtist.nameKo, avatar: visualArtist.avatar }
     : p.isCollaboration && p.partner
-      ? { name: p.partner.name, nameKo: p.partner.name, avatar: p.partner.avatar }
+      ? { name: p.partner.name, nameKo: p.partner.nameKo, avatar: p.partner.avatar }
       : null;
   const showArtworks = visual !== null;
 
