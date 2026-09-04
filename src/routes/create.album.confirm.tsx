@@ -4,8 +4,9 @@ import { FlowShell } from "@/components/poco/FlowShell";
 import { albumSteps, StepFooter } from "@/components/poco/Steps";
 import { SectionTitle } from "@/components/poco/ui";
 import { useT } from "@/lib/i18n";
-import { album, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { album, musician, tracks } from "@/lib/mock-data";
 import { usePoco } from "@/lib/poco-store";
+import { modeLabel, useProjectMode } from "@/lib/project-mode";
 
 export const Route = createFileRoute("/create/album/confirm")({
   head: () => ({
