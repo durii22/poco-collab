@@ -141,6 +141,7 @@ const StoreContext = createContext<Ctx>({
   setCollab: () => {},
   setPilot: () => {},
   setPilotConfig: () => {},
+  resetProject: () => {},
   reset: () => {},
 });
 
