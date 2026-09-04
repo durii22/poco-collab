@@ -134,7 +134,7 @@ export function AlbumView({
               </div>
             </article>
 
-            {artworks[i] ? (
+            {showArtworks && artworks[i] ? (
               <figure className="space-y-2">
                 <img src={artworks[i].src} alt={artworks[i].title} loading="lazy" width={1024} height={1280} className={cn("w-full object-cover", minimal ? "rounded-none" : "rounded-2xl")} />
                 <figcaption className="flex items-center gap-2 text-[11px] text-ink-muted">
