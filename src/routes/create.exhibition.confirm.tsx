@@ -25,14 +25,21 @@ function Confirm() {
   const navigate = useNavigate();
   const { state, set } = usePoco();
 
-  const rows = [
+  const p = useProjectMode();
+  const rows: [string, string][] = [
     ["Exhibition", exhibition.title],
     ["Artist", state.artist.name || "Seoyeon Han"],
     ["Works", `${state.uploadedWorks || artworks.length} works`],
-    ["Sound", `Room Tone — ${musician.name}`],
-    ["Refinements", state.refinements.length ? `${state.refinements.length} applied` : "None"],
-    ["Visibility", "Public link"],
+    ["Creation mode", modeLabel(p.mode)],
   ];
+  if (p.isCollaboration && p.partner) {
+    rows.push(["Collaborator", p.partner.name]);
+    rows.push(["Sound", p.track ? `${p.track.title} — ${p.partner.name}` : "Not selected"]);
+  } else if (p.isLater) {
+    rows.push(["Collaboration", "Not selected yet"]);
+  }
+  rows.push(["Refinements", state.refinements.length ? `${state.refinements.length} applied` : "None"]);
+  rows.push(["Visibility", "Public link"]);
 
   return (
     <FlowShell steps={exhibitionSteps} current={6}>
