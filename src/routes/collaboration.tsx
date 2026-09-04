@@ -7,6 +7,7 @@ import { PlayerBar, useMockPlayer } from "@/components/poco/AudioPlayer";
 import { Button, SectionTitle } from "@/components/poco/ui";
 import { useLang, useT } from "@/lib/i18n";
 import { album, artworks, collaboration, exhibition, musician, tracks, visualArtist } from "@/lib/mock-data";
+import { useProjectMode } from "@/lib/project-mode";
 
 export const Route = createFileRoute("/collaboration")({
   head: () => ({
