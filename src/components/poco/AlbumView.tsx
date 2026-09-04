@@ -169,9 +169,11 @@ export function AlbumView({
           <div className="flex flex-wrap gap-2">
             <Button variant="outline" onClick={() => setInquiry("perf")}>{t("inqPerf")}</Button>
             <Button variant="outline" onClick={() => setInquiry("collab")}>{t("inqCollab")}</Button>
-            <Link to="/collaboration" className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2">
-              {t("viewCollab")}
-            </Link>
+            {p.isDemo || p.isCollaboration ? (
+              <Link to="/collaboration" className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2">
+                {t("viewCollab")}
+              </Link>
+            ) : null}
           </div>
           <Comments pageKey="album" />
           <InquiryModal
