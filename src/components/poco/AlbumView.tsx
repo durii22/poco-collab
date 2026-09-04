@@ -150,13 +150,17 @@ export function AlbumView({
       <section className="mx-auto mt-14 max-w-3xl px-4 sm:px-6">
         <div className="panel space-y-1.5 p-5 text-sm text-ink-muted">
           <p className="eyebrow mb-2">{t("credits")}</p>
-          {album.credits.map((c) => (
-            <p key={c}>{c}</p>
-          ))}
+          {album.credits
+            .filter((c) => visual || !c.includes(visualArtist.name))
+            .map((c) => (
+              <p key={c}>{c}</p>
+            ))}
         </div>
-        <Link to="/exhibition" className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline">
-          {t("viewExhibition")}: {visualArtist.name} — Quiet Hours <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
+        {visual ? (
+          <Link to="/exhibition" className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline">
+            {t("viewExhibition")}: {visual.name} — Quiet Hours <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        ) : null}
       </section>
 
       {!preview && (
