@@ -136,12 +136,14 @@ export function ExhibitionView({
             <Button variant="outline" onClick={() => setInquiry(true)}>
               {t("inqCollab")}
             </Button>
-            <Link
-              to="/collaboration"
-              className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2"
-            >
-              {t("viewCollab")}
-            </Link>
+            {p.isDemo || p.isCollaboration ? (
+              <Link
+                to="/collaboration"
+                className="inline-flex h-11 items-center rounded-full border border-stroke-panel px-5 text-sm font-semibold transition hover:bg-elev-2"
+              >
+                {t("viewCollab")}
+              </Link>
+            ) : null}
           </div>
           <Comments pageKey="exhibition" />
           <InquiryModal open={inquiry} onClose={() => setInquiry(false)} title={t("inqCollab")} />
