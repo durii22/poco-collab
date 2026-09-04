@@ -74,26 +74,40 @@ export function Field({
   onChange,
   placeholder,
   textarea,
+  error,
+  onBlur,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
   textarea?: boolean;
+  error?: string | null;
+  onBlur?: () => void;
 }) {
-  const base =
-    "w-full rounded-xl border border-stroke-panel bg-surface-note px-3.5 py-3 text-sm text-foreground placeholder:text-ink-muted/60 outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20";
+  const base = cn(
+    "w-full rounded-xl border bg-surface-note px-3.5 py-3 text-sm text-foreground placeholder:text-ink-muted/60 outline-none transition focus:ring-2",
+    error
+      ? "border-destructive/70 focus:border-destructive focus:ring-destructive/20"
+      : "border-stroke-panel focus:border-primary/70 focus:ring-primary/20",
+  );
   return (
     <label className="block space-y-2">
       <span className="text-xs font-medium text-ink-muted">{label}</span>
       {textarea ? (
-        <textarea rows={4} value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} className={base} />
+        <textarea rows={4} value={value} placeholder={placeholder} onBlur={onBlur} onChange={(e) => onChange(e.target.value)} className={base} />
       ) : (
-        <input value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} className={base} />
+        <input value={value} placeholder={placeholder} onBlur={onBlur} onChange={(e) => onChange(e.target.value)} className={base} />
       )}
+      {error ? (
+        <span role="alert" className="block text-[12px] font-medium text-destructive">
+          {error}
+        </span>
+      ) : null}
     </label>
   );
 }
+
 
 export function SectionTitle({ eyebrow, title, sub }: { eyebrow?: string; title: string; sub?: string }) {
   return (
